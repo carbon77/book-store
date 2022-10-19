@@ -1,0 +1,42 @@
+@use "src/styles/colors"
+
+@mixin create-btn($name, $color, $text-color)
+  .btn-#{$name}
+    background: $color
+    border: 3px solid $color
+    color: $text-color
+
+    &:hover
+      background: scale-color($color, $lightness: -10%)
+      border: 3px solid scale-color($color, $lightness: -10%)
+
+    &:active
+      background: scale-color($color, $lightness: -20%)
+      border: 3px solid scale-color($color, $lightness: -20%)
+
+  .btn-#{$name}-outline
+    background: none
+    color: $color
+
+    &:hover
+      color: $text-color
+      border: 3px solid scale-color($color, $lightness: -10%)
+
+    &:active
+      color: $text-color
+      border: 3px solid scale-color($color, $lightness: -20%)
+
+.btn
+  padding: 5px 10px
+  font-size: 1.3rem
+  font-weight: 500
+  background: none
+  border: 3px solid black
+  border-radius: 8px
+  cursor: pointer
+  transition: all .2s ease
+
+@include create-btn("primary", colors.$primary, white)
+@include create-btn("danger", colors.$danger, white)
+@include create-btn("dark", colors.$dark, white)
+@include create-btn("secondary", white, black)
