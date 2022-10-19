@@ -1,0 +1,90 @@
+@use "src/styles/colors"
+
+.header
+  background: colors.$dark
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  height: 55px
+
+  font-weight: bold
+  color: white
+
+  display: flex
+  justify-content: space-between
+
+  padding: 0 10%
+
+  &__title
+    text-decoration: none
+    font-family: 'Jost', sans-serif
+    display: flex
+    align-items: center
+    padding: 0
+    white-space: nowrap
+    user-select: none
+    cursor: pointer
+    color: white
+
+    span
+      font-family: inherit
+      color: colors.$primary
+
+
+  &__search-form
+    $border-radius: 5px
+    $font-size: .9rem
+    display: flex
+    align-items: center
+    width: 45%
+
+    input
+      width: 100%
+      padding: 8px 15px
+      background: white
+      border: none
+      border-radius: $border-radius 0 0 $border-radius
+      outline: none
+      font-size: $font-size
+
+    button
+      background: colors.$primary
+      border: none
+      color: white
+      font-weight: bold
+      font-size: $font-size
+      padding: 8px 15px
+      border-radius: 0 $border-radius $border-radius 0
+      cursor: pointer
+      white-space: nowrap
+      transition: all .2s ease
+
+      &:hover
+        background: scale-color(colors.$primary, $lightness: -15%)
+
+      &:active
+        background: scale-color(colors.$primary, $lightness: -25%)
+
+  &__nav
+    display: flex
+    justify-content: space-around
+
+  &__nav-item
+    display: flex
+    align-items: center
+    padding: 0 20px
+    cursor: pointer
+    transition: all .2s ease
+    font-size: 1rem
+    user-select: none
+    white-space: nowrap
+
+    &:hover
+      background: colors.$primary
+
+    &:active
+      background: scale-color(colors.$primary, $lightness: -15%)
+
+    span
+      margin-right: 10px
