@@ -1,0 +1,61 @@
+@use "src/styles/colors"
+
+$modal-border-radius: 15px
+$padding-y: 30px
+
+.modal
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  display: flex
+  justify-content: center
+  padding-top: 10%
+  visibility: visible
+  opacity: 1
+  background: rgba(0, 0, 0, .5)
+  transition: all .2s ease-in-out
+
+  &-close
+    visibility: hidden
+    opacity: 0
+
+  &__content
+    max-width: 550px
+    width: 70%
+    border-radius: 50px
+    transition: transform .2s ease-in-out
+
+  &-close &__content
+    transform: translateY(20px)
+
+  &__header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 15px $padding-y
+    border-radius: $modal-border-radius $modal-border-radius 0 0
+    background: colors.$dark
+    color: white
+    font-size: 1.1rem
+
+  &__close
+    cursor: pointer
+    transition: color .1s ease
+
+    &:hover
+      color: colors.$danger
+
+
+  &__body
+    padding: 15px $padding-y
+    background: white
+
+  &__footer
+    display: flex
+    justify-content: flex-end
+    gap: 18px
+    padding: 13px $padding-y
+    border-radius: 0 0 $modal-border-radius $modal-border-radius
+    background: colors.$dark
