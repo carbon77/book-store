@@ -27,14 +27,18 @@
       border: 3px solid scale-color($color, $lightness: -20%)
 
 .btn
+  display: inline
   padding: 3px 10px
-  font-size: 1rem
+  font-size: .9rem
   font-weight: 500
   background: none
   border: 3px solid black
   border-radius: 5px
   cursor: pointer
   transition: all .2s ease
+
+  &__icon
+    margin-left: 10px
 
 @include create-btn("primary", colors.$primary, white)
 @include create-btn("danger", colors.$danger, white)

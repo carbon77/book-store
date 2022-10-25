@@ -1,13 +1,16 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import './button.sass'
 
-function Button({ children, onCLick, color = 'primary', outline = false, submit = false }) {
+function Button({ children, color = 'primary', outline = false, icon, ...fields }) {
 	return (
 		<button
 			className={ `btn btn-${ color } ${ outline ? `btn-${ color }-outline` : '' }` }
-			onClick={ onCLick }
-			type={ submit ? 'submit' : 'button' }
-		>{ children }</button>
+			{...fields}
+		>
+			{ children }
+			{ icon ? <FontAwesomeIcon icon={icon} className={'btn__icon'}/> : null }
+		</button>
 	)
 }
 
