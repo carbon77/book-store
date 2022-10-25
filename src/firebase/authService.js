@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseSignOut } from '@firebase/auth'
 import { auth } from './index'
 
 export default {
@@ -17,4 +17,8 @@ export default {
 				email: user.email,
 			} ))
 	},
+
+	async signOut() {
+		await firebaseSignOut(auth)
+	}
 }

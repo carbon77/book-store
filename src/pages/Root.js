@@ -19,8 +19,9 @@ function Root() {
 					id: user.uid,
 					email: user.email,
 				}))
-				dispatch(loadUserInfo(user.uid)).then(() => setIsLoading(false))
+				dispatch(loadUserInfo(user.uid))
 			}
+			setIsLoading(false)
 		})
 	}, [])
 

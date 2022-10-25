@@ -9,7 +9,11 @@ export const userSlice = createSlice({
 	},
 	reducers: {
 		setUser: (state, action) => {
-			state.user = { ...action.payload }
+			if (!action.payload) {
+				state.user = null
+			} else {
+				state.user = { ...action.payload }
+			}
 		},
 
 		setUserInfo: (state, action) => {
@@ -37,6 +41,13 @@ export function loadUserInfo(userId) {
 	return async (dispatch, getState) => {
 		const userInfo = await userService.loadUserInfo(userId)
 		dispatch(setUserInfo(userInfo))
+	}
+}
+
+export function signOut() {
+	return async (dispatch, getState) => {
+		await authService.signOut()
+		dispatch(setUser(null))
 	}
 }
 
