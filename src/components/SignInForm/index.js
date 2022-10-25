@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { login } from '../../store/user'
@@ -6,7 +6,7 @@ import Button from '../Button'
 import Input from '../Input'
 
 function SignInForm({ onSubmit: closeModal }) {
-	const { handleSubmit, control } = useForm()
+	const { handleSubmit, control, formState: { errors } } = useForm()
 	const [isLoading, setIsLoading] = useState(false)
 	const dispatch = useDispatch()
 
@@ -26,23 +26,42 @@ function SignInForm({ onSubmit: closeModal }) {
 				<Controller
 					name={ 'email' }
 					control={ control }
+					rules={ {
+						required: 'Это поле обязательное',
+						pattern: {
+							value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+							message: 'Не правильная электронная почта',
+						},
+					} }
 					render={
 						({ field }) =>
-							<Input placeholder={ 'Email' } { ...field } ref={ null } id={ 'email-input' }/>
+							<Input placeholder={ 'Электронная почта' } type={ 'email' } { ...field }
+								   ref={ null }
+								   id={ 'email-input' }/>
 					}
 				/>
+				{ errors.email
+					? <div className={ 'form-field__error' }>{ errors.email.message }</div>
+					: null }
 			</div>
 			<div className="form-field">
 				<label htmlFor="password-input">Пароль</label>
 				<Controller
 					name={ 'password' }
 					control={ control }
+					rules={ {
+						required: 'Это поле обязательное',
+					} }
 					render={
 						({ field }) =>
-							<Input placeholder={ 'Password' } type={ 'password' } { ...field } ref={ null }
+							<Input placeholder={ 'Пароль' } type={ 'password' } { ...field }
+								   ref={ null }
 								   id={ 'password-input' }/>
 					}
 				/>
+				{ errors.password
+					? <div className={ 'form-field__error' }>{ errors.password.message }</div>
+					: null }
 			</div>
 
 			<Button type={ 'submit' } color={ 'primary' } disabled={ isLoading }>

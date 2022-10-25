@@ -1,4 +1,4 @@
-import { doc, getDoc } from '@firebase/firestore'
+import { doc, getDoc, setDoc } from '@firebase/firestore'
 import { db } from './index'
 
 export default {
@@ -10,5 +10,9 @@ export default {
 			return snapshot.data()
 		}
 		throw new Error("No such user")
+	},
+
+	async setUserInfo(userId, info) {
+		await setDoc(doc(db, "userInfo", userId), info)
 	}
 }

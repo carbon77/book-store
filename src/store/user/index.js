@@ -51,4 +51,13 @@ export function signOut() {
 	}
 }
 
+export function createUser(name, email, password) {
+	return async (dispatch) => {
+		const user = await authService.createUser(email, password)
+		await userService.setUserInfo(user.id, { name })
+
+		dispatch(setUser({ ...user, name }))
+	}
+}
+
 export default userSlice.reducer

@@ -1,26 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { createUser } from '../../store/user'
 import Button from '../Button'
 import Input from '../Input'
 
-function SignUpForm() {
-	const { control, handleSubmit } = useForm()
+function SignUpForm({ onSubmit: closeModal }) {
+	const { control, handleSubmit, formState: { errors } } = useForm()
+	const dispatch = useDispatch()
+	const [isLoading, setIsLoading] = useState(false)
 
-	function onSubmit(data) {
-		console.log(data)
+	async function onSubmit({ name, email, password }) {
+		setIsLoading(true)
+		await dispatch(createUser(name, email, password))
+		closeModal()
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className={"form"}>
+		<form onSubmit={ handleSubmit(onSubmit) } className={ 'form' }>
 			<div className="form-field">
 				<label htmlFor="name-input">Имя</label>
 				<Controller
 					name={ 'name' }
 					control={ control }
+					rules={ {
+						required: 'Это поле обязательное',
+					} }
 					render={ ({ field }) =>
 						<Input placeholder={ 'Имя' } { ...field } ref={ null } id={ 'name-input' }/>
 					}
 				/>
+				{ errors.name
+					? <div className={ 'form-field__error' }>{ errors.name.message }</div>
+					: null }
 			</div>
 
 			<div className="form-field">
@@ -28,10 +40,20 @@ function SignUpForm() {
 				<Controller
 					name={ 'email' }
 					control={ control }
+					rules={ {
+						required: 'Это поле обязательное',
+						pattern: {
+							value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+							message: 'Не правильная электронная почта',
+						},
+					} }
 					render={ ({ field }) =>
 						<Input placeholder={ 'Электронная почта' } { ...field } ref={ null } id={ 'email-input' }/>
 					}
 				/>
+				{ errors.email
+					? <div className={ 'form-field__error' }>{ errors.email.message }</div>
+					: null }
 			</div>
 
 			<div className="form-field">
@@ -39,13 +61,26 @@ function SignUpForm() {
 				<Controller
 					name={ 'password' }
 					control={ control }
+					rules={ {
+						required: 'Это поле обязательное',
+						minLength: {
+							value: 6,
+							message: 'Пароль должен быть больше шести символов',
+						},
+					} }
 					render={ ({ field }) =>
-						<Input placeholder={ 'Пароль' } { ...field } ref={ null } id={ 'password-input' }/>
+						<Input placeholder={ 'Пароль' } { ...field } ref={ null } id={ 'password-input' }
+							   type={ 'password' }/>
 					}
 				/>
+				{ errors.password
+					? <div className={ 'form-field__error' }>{ errors.password.message }</div>
+					: null }
 			</div>
 
-			<Button type={'submit'} color={'primary'}>Создай аккаунт</Button>
+			<Button type={ 'submit' } color={ 'primary' } disabled={ isLoading }>
+				{ isLoading ? 'Создание...' : 'Создать аккаунт' }
+			</Button>
 		</form>
 	)
 }
