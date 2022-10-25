@@ -4,7 +4,7 @@ import React from 'react'
 import './modal.sass'
 import Button from '../Button'
 
-function Modal({ title, children, isOpen, setIsOpen, onSubmit, onCancel, cancelText, submitText }) {
+function Modal({ title, children, isOpen, setIsOpen, onSubmit, onCancel, cancelText, submitText, form }) {
 	function onModalClick(e) {
 		if (e.target.classList.contains('modal')) {
 			setIsOpen(open => !open)
@@ -22,13 +22,20 @@ function Modal({ title, children, isOpen, setIsOpen, onSubmit, onCancel, cancelT
 									 className={ 'modal__close' }
 									 onClick={ () => setIsOpen(open => !open) }/>
 				</div>
-				<div className="modal__body">
+				<div className={ `modal__body ${onSubmit || onCancel ? null : 'modal__body-no-footer'}` }>
 					{ children }
 				</div>
 				{ onSubmit || onCancel
 					? <div className={ 'modal__footer' }>
-						<Button onCLick={ onCancel } color={ 'secondary' }>{ cancelText }</Button>
-						<Button onCLick={ onSubmit } color={ 'primary' }>{ submitText }</Button>
+						{ onCancel ? <Button onClick={ onCancel } color={ 'secondary' }>{ cancelText }</Button> : null }
+						{ onSubmit ? <Button
+							onClick={ onSubmit }
+							color={ 'primary' }
+							type={ 'submit' }
+							form={ form }
+						>
+							{ submitText }
+						</Button> : null }
 					</div>
 					: null
 				}
