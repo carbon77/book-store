@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import Header from '../components/Header'
 import { auth } from '../firebase'
-import { setUser } from '../store/auth'
+import { loadUserInfo, setUser } from '../store/user'
 
 function Root() {
 	const dispatch = useDispatch()
@@ -19,8 +19,8 @@ function Root() {
 					id: user.uid,
 					email: user.email,
 				}))
+				dispatch(loadUserInfo(user.uid)).then(() => setIsLoading(false))
 			}
-			setIsLoading(false)
 		})
 	}, [])
 
@@ -30,7 +30,7 @@ function Root() {
 
 	return (
 		<div>
-			<Header />
+			<Header/>
 			<main>
 				<Outlet/>
 			</main>

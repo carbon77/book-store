@@ -4,7 +4,7 @@ import './authModalBody.sass'
 import SignInForm from '../SignInForm'
 import SignUpForm from '../SignUpForm'
 
-function AuthModalBody() {
+function AuthModalBody({ setIsModalOpen }) {
 	const [tab, setTab] = useState('signIn')
 
 	function changeTab(newTab) {
@@ -14,13 +14,17 @@ function AuthModalBody() {
 	return (
 		<div className={ 'tabs' }>
 			<div className="tabs-items">
-				<div className={`tabs-item ${tab === 'signIn' ? 'checked' : null}`} onClick={ changeTab('signIn') }>Авторизация</div>
-				<div className={`tabs-item ${tab === 'signUp' ? 'checked' : null}`} onClick={ changeTab('signUp') }>Регистрация</div>
+				<div className={ `tabs-item ${ tab === 'signIn' ? 'checked' : null }` }
+					 onClick={ changeTab('signIn') }>Авторизация
+				</div>
+				<div className={ `tabs-item ${ tab === 'signUp' ? 'checked' : null }` }
+					 onClick={ changeTab('signUp') }>Регистрация
+				</div>
 			</div>
 			<div className="tabs-body">
 				{ tab === 'signIn'
-					? <SignInForm />
-					: <SignUpForm />
+					? <SignInForm onSubmit={() => setIsModalOpen(false)}/>
+					: <SignUpForm onSubmit={() => setIsModalOpen(false)}/>
 				}
 			</div>
 

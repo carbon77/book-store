@@ -1,20 +1,14 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "@firebase/auth";
-import { auth } from "./index";
+import { doc, getDoc } from '@firebase/firestore'
+import { db } from './index'
 
 export default {
-    async createUser(email, password) {
-        return await createUserWithEmailAndPassword(auth, email, password)
-            .then(({ user }) => ({
-                id: user.uid,
-                email: user.email,
-            }))
-    },
+	async loadUserInfo(userId) {
+		const ref = doc(db, "userInfo", userId)
+		const snapshot = await getDoc(ref)
 
-    async signIn(email, password) {
-        return await signInWithEmailAndPassword(auth, email, password)
-            .then(({ user }) => ({
-                id: user.uid,
-                email: user.email,
-            }))
-    },
+		if (snapshot.exists()) {
+			return snapshot.data()
+		}
+		throw new Error("No such user")
+	}
 }

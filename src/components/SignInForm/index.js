@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { login } from '../../store/user'
 import Button from '../Button'
 import Input from '../Input'
 
-function SignInForm() {
+function SignInForm({ onSubmit: closeModal }) {
 	const { handleSubmit, control } = useForm()
+	const [isLoading, setIsLoading] = useState(false)
+	const dispatch = useDispatch()
 
-	function onSubmit(data) {
-		console.log(data)
+	async function onSubmit(data) {
+		setIsLoading(true)
+		dispatch(login(data.email, data.password))
+			.then(() => {
+				setIsLoading(false)
+				closeModal()
+			})
 	}
 
 	return (
-		<form onSubmit={ handleSubmit(onSubmit) } className={"form"}>
+		<form onSubmit={ handleSubmit(onSubmit) } className={ 'form' }>
 			<div className="form-field">
 				<label htmlFor="email-input">Электронная почта</label>
 				<Controller
@@ -36,7 +45,9 @@ function SignInForm() {
 				/>
 			</div>
 
-			<Button type={'submit'} color={'primary'}>Войти</Button>
+			<Button type={ 'submit' } color={ 'primary' } disabled={ isLoading }>
+				{ isLoading ? 'Вход...' : 'Войти' }
+			</Button>
 		</form>
 	)
 }

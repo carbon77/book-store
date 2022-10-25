@@ -2,14 +2,16 @@ import { faBook, faCartShopping, faMagnifyingGlass } from '@fortawesome/free-sol
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { selectUser } from '../../store/auth'
+import { selectUser } from '../../store/user'
 import Modal from '../Modal'
 import AuthModalBody from '../AuthModalBody'
 import './header.sass'
 
 function Header() {
 	const user = useSelector(selectUser)
+	const navigate = useNavigate()
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
@@ -23,13 +25,19 @@ function Header() {
 				</form>
 
 				<div className="header__nav">
-					<div className="header__nav-item" onClick={ () => setIsModalOpen(mo => !mo) }>
-						{ user
-							? <>Игорь Закатов</>
-							: <>Авторизация</>
-						}
-					</div>
-					<div className="header__nav-item"><FontAwesomeIcon icon={ faBook }/></div>
+					{ user
+						? ( <>
+							<div className="header__nav-item" onClick={() => navigate("user")}>
+								{ user.name }
+							</div>
+							<div className="header__nav-item"><FontAwesomeIcon icon={ faBook }/></div>
+						</> )
+						: (
+							<div className="header__nav-item" onClick={ () => setIsModalOpen(mo => !mo) }>
+								Войти
+							</div>
+						)
+					}
 					<div className="header__nav-item"><FontAwesomeIcon icon={ faCartShopping }/></div>
 				</div>
 			</header>
@@ -38,7 +46,7 @@ function Header() {
 				isOpen={ isModalOpen }
 				setIsOpen={ setIsModalOpen }
 			>
-				<AuthModalBody />
+				<AuthModalBody setIsModalOpen={ setIsModalOpen }/>
 			</Modal>
 		</>
 	)
