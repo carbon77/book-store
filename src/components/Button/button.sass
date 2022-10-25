@@ -40,6 +40,18 @@
   &__icon
     margin-left: 10px
 
+  &:disabled
+    background: colors.$grey
+    border: 3px solid colors.$grey
+    color: colors.$secondary
+
+    &:hover
+      background: colors.$grey
+      border: 3px solid colors.$grey
+      color: colors.$secondary
+
+
+
 @include create-btn("primary", colors.$primary, white)
 @include create-btn("danger", colors.$danger, white)
 @include create-btn("dark", colors.$dark, white)
