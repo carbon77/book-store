@@ -33,14 +33,23 @@ export function login(email, password) {
 	return async (dispatch, getState) => {
 		const user = await authService.signIn(email, password)
 		const userInfo = await userService.loadUserInfo(user.id)
-		dispatch(setUser({ ...user, ...userInfo }))
+		const avatarUrl = await userService.downloadAvatar(user.id)
+		dispatch(setUser({ ...user, ...userInfo, avatarUrl }))
 	}
 }
 
 export function loadUserInfo(userId) {
 	return async (dispatch, getState) => {
 		const userInfo = await userService.loadUserInfo(userId)
-		dispatch(setUserInfo(userInfo))
+		const avatarUrl = await userService.downloadAvatar(userId)
+		dispatch(setUserInfo({ ...userInfo, avatarUrl }))
+	}
+}
+
+export function uploadAvatar(userId, file) {
+	return async (dispatch, getState) => {
+		const avatarUrl = await userService.uploadAvatar(userId, file)
+		dispatch(setUserInfo({ avatarUrl }))
 	}
 }
 
