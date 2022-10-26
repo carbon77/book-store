@@ -16,7 +16,25 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "user",
-				element: <UserPage />
+				element: <UserPage />,
+				children: [
+					{
+						path: "info",
+						element: <div>Информация для входа</div>
+					},
+					{
+						path: "about_me",
+						element: <div>Обо мне</div>
+					},
+					{
+						path: "history",
+						element: <div>История операция</div>
+					},
+					{
+						path: "payment",
+						element: <div>Способы оплаты</div>
+					},
+				]
 			}
 		],
 	},
