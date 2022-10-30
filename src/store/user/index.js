@@ -22,6 +22,8 @@ export const userSlice = createSlice({
 	},
 })
 
+export default userSlice.reducer
+
 // Actions
 export const { setUser, setUserInfo } = userSlice.actions
 
@@ -43,6 +45,14 @@ export function loadUserInfo(userId) {
 		const userInfo = await userService.loadUserInfo(userId)
 		const avatarUrl = await userService.downloadAvatar(userId)
 		dispatch(setUserInfo({ ...userInfo, avatarUrl }))
+	}
+}
+
+export function updateUserInfo(info) {
+	return async (dispatch, getState) => {
+		const userId = getState().id
+		await userService.setUserInfo(userId, info)
+		dispatch(setUserInfo(info))
 	}
 }
 
@@ -68,5 +78,3 @@ export function createUser(name, email, password) {
 		dispatch(setUser({ ...user, name }))
 	}
 }
-
-export default userSlice.reducer
