@@ -1,15 +1,21 @@
 @use "src/styles/colors"
 
-$loader-border-width: 8px
-
 .loader
+  $border-width: 8px
   width: 50px
   height: 50px
-  border: $loader-border-width solid colors.$secondary
-  border-top: $loader-border-width solid colors.$primary
+  border-width: $border-width
+  border-style: solid
+  border-color: colors.$secondary
+  border-top-color: colors.$primary
   border-radius: 50%
   animation: loader-spin 1.5s linear infinite
   margin: auto
+
+  &-small
+    width: 25px
+    height: 25px
+    border-width: calc($border-width - 3px)
 
 
 @keyframes loader-spin

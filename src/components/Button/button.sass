@@ -27,18 +27,20 @@
       border: 3px solid scale-color($color, $lightness: -20%)
 
 .btn
-  display: inline
+  display: inline-flex
+  gap: 10px
+  align-items: center
   padding: 3px 10px
   font-size: .9rem
   font-weight: 500
   background: none
   border: 3px solid black
-  border-radius: 5px
+  border-radius: 3px
   cursor: pointer
   transition: all .2s ease
 
-  &__icon
-    margin-left: 10px
+  &.icon
+    padding: 7px
 
   &:disabled
     background: colors.$grey
@@ -55,4 +57,4 @@
 @include create-btn("primary", colors.$primary, white)
 @include create-btn("danger", colors.$danger, white)
 @include create-btn("dark", colors.$dark, white)
-@include create-btn("secondary", white, black)
+@include create-btn("secondary", white, colors.$dark)

@@ -11,17 +11,22 @@ $padding-y: 30px
   left: 0
   display: flex
   justify-content: center
+  align-items: flex-start
   padding-top: 10%
-  visibility: visible
   opacity: 1
   background: rgba(0, 0, 0, .5)
   transition: all .2s ease-in-out
+  backdrop-filter: blur(3px)
+  z-index: 1000
+  overflow-y: auto
+  pointer-events: auto
 
   &-close
-    visibility: hidden
     opacity: 0
+    pointer-events: none
 
   &__content
+    height: min-content
     max-width: 550px
     width: 70%
     border-radius: 50px

@@ -1,0 +1,66 @@
+@use "src/styles/colors"
+
+.book-row
+  display: flex
+  gap: 15px
+  align-items: center
+
+  &__items
+    display: flex
+    flex-wrap: wrap
+    gap: 10px
+
+  &__item
+    position: relative
+    display: flex
+    flex-direction: column
+    width: 200px
+    cursor: pointer
+    border-radius: 10px
+    padding: 10px
+    font-size: .8em
+    transition: all .2s ease
+
+    &.large
+      width: 30%
+
+      img
+        width: 80%
+        height: auto
+
+    &:hover
+      box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2)
+
+    &-name
+      overflow: hidden
+      line-height: 1em
+      height: 2em
+      margin-bottom: 5px
+      white-space: normal
+
+    img
+      width: auto
+      height: 170px
+      margin: 0 auto 10px
+
+    &-hover-body
+      position: absolute
+      bottom: -20px
+      left: -20px
+      right: -20px
+      opacity: 0
+      padding: 10px
+      pointer-events: none
+      background: rgba(0, 0, 0, .8)
+      color: white
+      border-radius: 10px
+      transition: all .5s .3s ease
+
+    &:hover &-hover-body
+      opacity: 1
+      pointer-events: all
+
+    &-btns
+      margin-top: 5px
+      display: flex
+      justify-content: space-between

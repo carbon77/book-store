@@ -5,7 +5,7 @@ import './button.sass'
 function Button({ children, color = 'primary', outline = false, icon, ...fields }) {
 	return (
 		<button
-			className={ `btn btn-${ color } ${ outline ? `btn-${ color }-outline` : '' }` }
+			className={ `btn btn-${ color } ${ outline ? `btn-${ color }-outline` : '' } ${!children ? 'icon' : ''}` }
 			{...fields}
 		>
 			{ children }

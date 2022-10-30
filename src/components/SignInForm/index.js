@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { login } from '../../store/user'
+import { show } from '../../utils/notify'
 import Button from '../Button'
 import Input from '../Input'
 
@@ -15,6 +16,7 @@ function SignInForm({ onSubmit: closeModal }) {
 		dispatch(login(data.email, data.password))
 			.then(() => {
 				setIsLoading(false)
+				show('Авторизация', 'Вы успешно вошли!')
 				closeModal()
 			})
 	}

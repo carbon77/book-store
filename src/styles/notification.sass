@@ -1,0 +1,39 @@
+@use "colors"
+
+#notification-container
+  position: fixed
+  right: 0
+  bottom: 0
+  top: 0
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  padding: 20px
+  gap: 10px
+  pointer-events: none
+
+
+.notification
+  border: 1px solid colors.$secondary
+  background: white
+  border-radius: 5px
+  transition: all .5s ease
+  opacity: 1
+  max-width: 260px
+
+  &__title
+    padding: 10px 20px
+    font-weight: bold
+    font-size: 1.1em
+    border-bottom: 1px solid colors.$secondary
+
+  &__body
+    padding: 10px 20px
+
+  &-open
+    opacity: 0
+    transform: translateY(-20px)
+
+  &-close
+    opacity: 0
+    transform: translateY(20px)
