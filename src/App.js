@@ -4,6 +4,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import Root from './pages/Root'
 import UserPage from './pages/UserPage'
+import UserInfo from './pages/UserPage/UserInfo'
 
 const router = createBrowserRouter([
 	{
@@ -15,37 +16,33 @@ const router = createBrowserRouter([
 				element: <HomePage/>,
 			},
 			{
-				path: "user",
-				element: <UserPage />,
+				path: 'user',
+				element: <UserPage/>,
 				children: [
 					{
-						path: "info",
-						element: <div>Информация для входа</div>
+						path: 'info',
+						element: <UserInfo/>,
 					},
 					{
-						path: "about_me",
-						element: <div>Обо мне</div>
+						path: 'about_me',
+						element: <div>Обо мне</div>,
 					},
 					{
-						path: "history",
-						element: <div>История операция</div>
+						path: 'history',
+						element: <div>История операция</div>,
 					},
 					{
-						path: "payment",
-						element: <div>Способы оплаты</div>
+						path: 'payment',
+						element: <div>Способы оплаты</div>,
 					},
-				]
-			}
+				],
+			},
 		],
 	},
 ])
 
 function App() {
-	return (
-		<div>
-			<RouterProvider router={ router }/>
-		</div>
-	)
+	return <RouterProvider router={ router }/>
 }
 
 export default App
