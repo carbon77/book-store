@@ -3,6 +3,7 @@ import { onAuthStateChanged } from '@firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { auth } from '../firebase'
 import { loadUserInfo, setUser } from '../store/user'
@@ -30,12 +31,13 @@ function Root() {
 	}
 
 	return (
-		<div>
+		<>
 			<Header/>
 			<main>
 				<Outlet/>
 			</main>
-		</div>
+			<Footer/>
+		</>
 	)
 }
 
