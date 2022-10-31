@@ -18,17 +18,17 @@ function HomePage() {
 		} else {
 			setIsLoadingBooks(false)
 		}
-	}, [])
+	}, [books])
 
 	return (
 		<div className={ 'home-page-container' }>
 			<div className="block">
 				{ isLoadingBooks ? <Loader/> : <>
 					<div className="block-body">
-						<h3>Рекоммендации</h3>
+						<h3 className={ 'block__section-title' }>Рекоммендации</h3>
 						<BookRow books={ books.filter(book => book.genre !== 'Программирование') }/>
 						<div className="divider"/>
-						<h3>Программирование</h3>
+						<h3 className={ 'block__section-title' }>Программирование</h3>
 						<BookRow books={ books.filter(book => book.genre === 'Программирование') } size={ 'large' }/>
 					</div>
 				</> }

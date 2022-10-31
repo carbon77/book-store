@@ -1,0 +1,47 @@
+.row
+  width: 100%
+  display: flex
+  gap: 20px
+
+  &.wrap
+    flex-wrap: wrap
+
+  &.column
+    flex-direction: column
+
+  &.gap-0
+    gap: 0
+
+
+.col
+  width: 100%
+
+  @for $i from 1 through 9
+    &.w-#{$i}0
+      width: $i * 10%
+
+  &.btn-icon-col
+    display: flex
+    justify-content: flex-end
+    align-items: flex-start
+
+  &.d-flex
+    display: flex
+
+  &.jc-center
+    justify-content: center
+
+  &.jc-end
+    justify-content: flex-end
+
+  &.jc-start
+    justify-content: flex-start
+
+  &.ai-center
+    align-items: center
+
+  &.ai-end
+    align-items: flex-end
+
+  &.ai-start
+    align-items: flex-start

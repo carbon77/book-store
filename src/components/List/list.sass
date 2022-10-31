@@ -2,3 +2,7 @@
   display: flex
   flex-direction: column
   justify-content: flex-start
+
+  @for $i from 1 through 10
+    &.list-gap-#{$i}
+      gap: $i * 1em

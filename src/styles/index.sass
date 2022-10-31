@@ -1,6 +1,7 @@
 @use "colors"
 @use "form"
 @use "notification"
+@use "row"
 
 *
   margin: 0
@@ -10,3 +11,19 @@
 
 body
   background: colors.$secondary
+
+a
+  color: inherit
+
+.badge
+  font-size: .8em
+  padding: 1px 8px
+  border-radius: 10px
+
+  &.primary
+    background: colors.$primary
+    color: white
+
+  &.dark
+    background: colors.$dark
+    color: white
