@@ -1,0 +1,88 @@
+@use "src/styles/colors"
+
+.book-page-container
+  max-width: 1000px
+  width: 80%
+
+.breadcrumb
+  font-size: .8em
+  color: colors.$grey
+  margin-bottom: 15px
+
+  &__item
+    cursor: pointer
+    user-select: none
+
+    a
+      text-decoration: none
+
+    &:hover
+      text-decoration: underline
+
+.book-cover
+  width: 100%
+  height: auto
+
+.book-achievements
+  margin: 15px 0 10px
+  display: flex
+  gap: 5px
+
+.book-rating-row
+  display: flex
+
+  & > *
+    padding: 3px 15px
+
+.book-rating
+  color: colors.$primary
+  border-right: 1px solid colors.$secondary
+
+.book-reviewCount
+  color: colors.$grey
+
+.book-info
+  width: 70%
+  font-size: .8em
+
+  &__title
+    display: inline-block
+    margin: 10px 0
+
+  &__item
+    display: flex
+    justify-content: space-between
+
+.book-buttons
+  margin-top: 20px
+  width: 50%
+  display: flex
+  flex-direction: column
+  gap: .5em
+
+  .btn
+    font-size: 1.2em
+
+
+.review
+  display: flex
+  gap: 1em
+
+  &__author
+    display: block
+
+  &__header
+    display: flex
+    justify-content: space-between
+
+  &__avatar
+    width: 35px
+    height: 35px
+    border-radius: 50%
+    object-fit: cover
+
+  &__body
+    padding: 10px 20px
+
+  &__rating
+    color: colors.$primary
