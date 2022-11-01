@@ -150,9 +150,10 @@ function UserPage() {
 			isOpen={ signOutModalOpen }
 			setIsOpen={ setSignOutModalOpen }
 			submitText={ 'Выйти' }
-			onSubmit={ () => dispatch(signOut()).then(r => {
-				navigate('/')
-			}) }
+			onSubmit={ () => {
+				navigate("/")
+				dispatch(signOut())
+			}}
 			cancelText={ 'Отмена' }
 			onCancel={ () => setSignOutModalOpen(false) }
 		>

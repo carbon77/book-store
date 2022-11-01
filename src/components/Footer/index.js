@@ -1,3 +1,4 @@
+import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import './footer.sass'
@@ -11,15 +12,24 @@ function Footer() {
 			<div className="footer-links">
 				<div className="row">
 					<div className="col footer-links__column">
-						<div className="row column gap-0">
-							<span className="col">Сотрудничество</span>
-							<span className="col">Контакты</span>
-							<span className="col">Вакансии</span>
-							<span className="col">Служба поддержки</span>
+						<div className="row column">
+							<div className="col footer-links__column-title">Социальные сети</div>
+							<div className="col">
+								<div className="row">
+									<div className="col social-button"><FontAwesomeIcon icon="fa-brands fa-telegram"/>
+									</div>
+									<div className="col social-button"><FontAwesomeIcon icon="fa-brands fa-twitter"/>
+									</div>
+									<div className="col social-button"><FontAwesomeIcon icon="fa-brands fa-linkedin"/>
+									</div>
+									<div className="col social-button"><FontAwesomeIcon icon="fa-brands fa-vk"/></div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className="col footer-links__column">
-						<div className="row column gap-0">
+						<div className="row column">
+							<span className="col footer-links__column-title">Ссылки</span>
 							<span className="col">Активировать купон</span>
 							<span className="col">Публичная оферта</span>
 							<span className="col">Политика обработки персональных данных</span>
@@ -27,7 +37,7 @@ function Footer() {
 						</div>
 					</div>
 					<div className="col footer-links__column">
-						<div className="row column gap-0">
+						<div className="row column">
 							<span className="col footer-links__column-title">Сотрудничество</span>
 							<span className="col">Издательствам</span>
 							<span className="col">Авторам</span>
@@ -38,21 +48,30 @@ function Footer() {
 						</div>
 					</div>
 					<div className="col footer-links__column">
-						<div className="row column gap-0">
-							<div className="col footer-links__column-title">Социальные сети</div>
-							<div className="col">
-								<div className="row">
-									<div className="col social-button"><FontAwesomeIcon icon="fa-brands fa-facebook" /></div>
-									<div className="col social-button"><FontAwesomeIcon icon="fa-brands fa-facebook" /></div>
-									<div className="col social-button"><FontAwesomeIcon icon="fa-brands fa-facebook" /></div>
-									<div className="col social-button"><FontAwesomeIcon icon="fa-brands fa-facebook" /></div>
+						<div className="row column">
+							<span className="col footer-links__column-title">Связь</span>
+							<span className="col">
+								<div className="row ai-center jc-center">
+									<span className="col w-10"><FontAwesomeIcon className={'about_us-icon'} icon={ faLocationDot }/></span>
+									<span className="col">119454, ЦФО, г. Москва, Проспект Вернадского, д. 78</span>
 								</div>
-							</div>
+							</span>
+							<span className="col">
+								<div className="row ai-center jc-center">
+									<span className="col w-10"><FontAwesomeIcon className={'about_us-icon'} icon={ faPhone }/></span>
+									<span className="col">+7 999 999-99-99</span>
+								</div>
+							</span>
+							<span className="col">
+								<div className="row ai-center jc-center">
+									<span className="col w-10"><FontAwesomeIcon className={'about_us-icon'} icon={ faEnvelope }/></span>
+									<span className="col">example@mail.com</span>
+								</div>
+							</span>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className="footer-partners"></div>
 		</footer>
 	)
 }
