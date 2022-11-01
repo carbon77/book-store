@@ -55,9 +55,50 @@ function Header() {
 				</div>
 
 				<div className="header__submenu">
-					<span className="header__submenu-item">
+					<span className="header__submenu-item header__submenu-item-books">
 						<FontAwesomeIcon icon={ faList }/>Книги
 					</span>
+
+					<div className="sub-books">
+						<div className="sub-books__items">
+							<div className="sub-books__item row column">
+								<span className="col sub-books__item-title">Лёгкое чтиво</span>
+								<span className="col">Фантастика</span>
+								<span className="col">Фентези</span>
+								<span className="col">Детективы</span>
+							</div>
+							<div className="sub-books__item row column">
+								<span className="col sub-books__item-title">Лёгкое чтиво</span>
+								<span className="col">Фантастика</span>
+								<span className="col">Фентези</span>
+								<span className="col">Детективы</span>
+							</div>
+							<div className="sub-books__item row column">
+								<span className="col sub-books__item-title">Лёгкое чтиво</span>
+								<span className="col">Фантастика</span>
+								<span className="col">Фентези</span>
+								<span className="col">Детективы</span>
+							</div>
+							<div className="sub-books__item row column">
+								<span className="col sub-books__item-title">Лёгкое чтиво</span>
+								<span className="col">Фантастика</span>
+								<span className="col">Фентези</span>
+								<span className="col">Детективы</span>
+							</div>
+							<div className="sub-books__item row column">
+								<span className="col sub-books__item-title">Лёгкое чтиво</span>
+								<span className="col">Фантастика</span>
+								<span className="col">Фентези</span>
+								<span className="col">Детективы</span>
+							</div>
+							<div className="sub-books__item row column">
+								<span className="col sub-books__item-title">Лёгкое чтиво</span>
+								<span className="col">Фантастика</span>
+								<span className="col">Фентези</span>
+								<span className="col">Детективы</span>
+							</div>
+						</div>
+					</div>
 
 					<span className="header__submenu-item">Новинки</span>
 					<span className="header__submenu-item">Рекомендации</span>
