@@ -1,21 +1,40 @@
 import { faBookmark, faCartShopping, faCheck } from '@fortawesome/free-solid-svg-icons'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { addBookToCart, removeBookFromCart, selectUser } from '../../store/user'
 import Button from '../Button'
 
 function BookRowItem({ book, size }) {
 	const navigate = useNavigate()
+	const user = useSelector(selectUser)
+	const dispatch = useDispatch()
 	const [isAddedToCart, setIsAddedToCart] = useState(false)
 	const [isAddedToBookmark, setIsAddedToBookmark] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
+
+	useEffect(() => {
+		if (user && user.cart && user.cart.includes(book.id)) {
+			setIsAddedToCart(true)
+		} else {
+			setIsAddedToCart(false)
+		}
+	}, [user])
 
 	function onBookmarkClick(e) {
 		e.stopPropagation()
 		setIsAddedToBookmark(lastState => !lastState)
 	}
 
-	function onBuyClick(e) {
+	async function onBuyClick(e) {
 		e.stopPropagation()
-		setIsAddedToCart(lastState => !lastState)
+		setIsLoading(true)
+		if (isAddedToCart) {
+			await dispatch(removeBookFromCart(user.id, book.id))
+		} else {
+			await dispatch(addBookToCart(user.id, book.id))
+		}
+		setIsLoading(false)
 	}
 
 	return (
@@ -32,6 +51,7 @@ function BookRowItem({ book, size }) {
 					onClick={ onBuyClick }
 					icon={ isAddedToCart ? faCheck : faCartShopping }
 					color={ isAddedToCart ? 'dark' : 'primary' }
+					disabled={isLoading}
 				>
 					{ isAddedToCart ? 'Добавлено' : 'Купить' }
 				</Button>

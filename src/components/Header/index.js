@@ -47,7 +47,10 @@ function Header() {
 								</div>
 							)
 						}
-						<div className="header__nav-item"><FontAwesomeIcon icon={ faCartShopping }/></div>
+						<div className="header__nav-item">
+							<FontAwesomeIcon icon={ faCartShopping }/>
+							{user?.cart ? user.cart.length : 0}
+						</div>
 					</div>
 				</div>
 

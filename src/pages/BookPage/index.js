@@ -8,6 +8,7 @@ import Button from '../../components/Button'
 import List from '../../components/List'
 import Loader from '../../components/Loader'
 import { fetchBookById, fetchReviews, selectCurrentBook, selectReviews } from '../../store/book'
+import { addBookToCart, removeBookFromCart, selectUser } from '../../store/user'
 import { getDateString } from '../../utils/date'
 import './bookPage.sass'
 
@@ -15,9 +16,11 @@ function BookPage() {
 	const { bookId } = useParams()
 	const book = useSelector(selectCurrentBook)
 	const reviews = useSelector(selectReviews)
+	const user = useSelector(selectUser)
 	const dispatch = useDispatch()
 	const [isBookLoading, setIsBookLoading] = useState(true)
 	const [isReviewsLoading, setIsReviewsLoading] = useState(true)
+	const [isAddedToCart, setIsAddedToCart] = useState(false)
 
 	useEffect(() => {
 		if (!book || bookId !== book.id) {
@@ -39,8 +42,24 @@ function BookPage() {
 		}
 	}, [reviews])
 
+	useEffect(() => {
+		if (user && user.cart && user.cart.includes(bookId)) {
+			setIsAddedToCart(true)
+		} else {
+			setIsAddedToCart(false)
+		}
+	}, [user])
+
 	if (isBookLoading)
 		return <Loader/>
+
+	async function onBuyClick() {
+		await dispatch(addBookToCart(user.id, book.id))
+	}
+
+	async function onRemoveFromCartClick() {
+		await dispatch(removeBookFromCart(user.id, book.id))
+	}
 
 	return (
 		<div className={ 'book-page-container' }>
@@ -104,13 +123,27 @@ function BookPage() {
 											</div>
 										</div>
 
-										<div className="book-buttons">
-											<Button
-												color={ 'primary' }
-												icon={ faCartShopping }
-											>Купить { book.price }&#8381;</Button>
-											<Button color={ 'dark' } icon={ faBookmark }>В закладки</Button>
-										</div>
+										{ !user ? <div>Нужно войти</div> : (
+											<div className="book-buttons">
+												{ isAddedToCart ? (
+													<Button
+														color={ 'dark' }
+														onClick={ onRemoveFromCartClick }
+													>В корзине</Button>
+												) : (
+													<Button
+														color={ 'primary' }
+														icon={ faCartShopping }
+														onClick={ onBuyClick }
+													>
+														Купить { book.price }&#8381;
+													</Button>
+												) }
+
+
+												<Button color={ 'dark' } icon={ faBookmark }>В закладки</Button>
+											</div>
+										) }
 									</div>
 								</div>
 							</div>

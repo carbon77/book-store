@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import authService from '../../firebase/authService'
+import bookService from '../../firebase/bookService'
 import userService from '../../firebase/userService'
 
 export const userSlice = createSlice({
@@ -19,16 +20,28 @@ export const userSlice = createSlice({
 		setUserInfo: (state, action) => {
 			state.user = { ...state.user, ...action.payload }
 		},
-	},
+
+		addBook: (state, action) => {
+			state.user = {...state.user, cart: [...state.user.cart, action.payload]}
+		},
+
+		removeBook: (state, action) => {
+			state.user = {
+				...state.user,
+				cart: state.user.cart.filter(book => book !== action.payload)
+			}
+		}
+	}
 })
 
 export default userSlice.reducer
 
 // Actions
-export const { setUser, setUserInfo } = userSlice.actions
+export const { setUser, setUserInfo, addBook, removeBook } = userSlice.actions
 
 // Selectors
 export const selectUser = (state) => state.user.user
+export const selectCart = (state) => state.user.user.cart
 
 // Thunk actions
 export function login(email, password) {
@@ -73,8 +86,22 @@ export function signOut() {
 export function createUser(name, email, password) {
 	return async (dispatch) => {
 		const user = await authService.createUser(email, password)
-		await userService.setUserInfo(user.id, { name })
+		await userService.setUserInfo(user.id, { name, cart: [] })
 
 		dispatch(setUser({ ...user, name }))
+	}
+}
+
+export function addBookToCart(userId, bookId) {
+	return async (dispatch) => {
+		await bookService.addBookToCart(userId, bookId)
+		dispatch(addBook(bookId))
+	}
+}
+
+export function removeBookFromCart(userId, bookId) {
+	return async (dispatch) => {
+		await bookService.removeBookFromCart(userId, bookId)
+		dispatch(removeBook(bookId))
 	}
 }

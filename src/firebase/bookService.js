@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs } from '@firebase/firestore'
+import { arrayRemove, arrayUnion, collection, doc, getDoc, getDocs, updateDoc } from '@firebase/firestore'
 import { db } from './index'
 
 export default {
@@ -32,5 +32,19 @@ export default {
 		})
 
 		return reviews
+	},
+
+	async addBookToCart(userId, bookId) {
+		const userRef = doc(db, 'userInfo', userId)
+		await updateDoc(userRef, {
+			cart: arrayUnion(bookId),
+		})
+	},
+
+	async removeBookFromCart(userId, bookId) {
+		const userRef = doc(db, 'userInfo', userId)
+		await updateDoc(userRef, {
+			cart: arrayRemove(bookId),
+		})
 	},
 }
