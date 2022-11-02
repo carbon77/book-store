@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addBookToCart, removeBookFromCart, selectUser } from '../../store/user'
 import Button from '../Button'
+import Loader from '../Loader'
 
 function BookRowItem({ book, size }) {
 	const navigate = useNavigate()

@@ -39,7 +39,9 @@ function Header({ setIsCartOpen }) {
 										<small>1000 руб.</small>
 									</div>
 								</div>
-								<div className="header__nav-item"><FontAwesomeIcon icon={ faBook }/> Мои книги</div>
+								<div className="header__nav-item" onClick={() => navigate("my-books")}>
+									<FontAwesomeIcon icon={ faBook }/>Мои книги
+								</div>
 							</> )
 							: (
 								<div className="header__nav-item" onClick={ () => setIsModalOpen(mo => !mo) }>

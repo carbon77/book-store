@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom'
 import Cart from '../components/Cart'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import Loader from '../components/Loader'
 import { auth } from '../firebase'
 import { fetchBooks } from '../store/book'
 import { loadUserInfo, setUser } from '../store/user'
@@ -19,19 +20,24 @@ function Root() {
 		setIsLoading(true)
 		onAuthStateChanged(auth, user => {
 			if (user) {
-				dispatch(setUser({
-					id: user.uid,
-					email: user.email,
-				}))
-				dispatch(loadUserInfo(user.uid))
-				dispatch(fetchBooks())
+
+				Promise.all([
+						dispatch(setUser({
+							id: user.uid,
+							email: user.email,
+						})),
+						dispatch(loadUserInfo(user.uid)),
+						dispatch(fetchBooks())
+				]).then(() => {
+					setIsLoading(false)
+				})
 			}
 			setIsLoading(false)
 		})
 	}, [])
 
 	if (isLoading) {
-		return <div>Is loading...</div>
+		return <Loader />
 	}
 
 	return (

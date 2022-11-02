@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { removeBookFromCart } from '../../../store/user'
 
-function CartPageItem({ user, book }) {
+function CartPageItem({ user, book, removable }) {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
@@ -20,9 +20,11 @@ function CartPageItem({ user, book }) {
 
 	return (
 		<div className={ 'cart-page__item' } onClick={onItemClick}>
-			<div className="cart-page__remove">
-				<span className="cart-page__remove-btn" onClick={onRemoveClick}><FontAwesomeIcon icon={ faTrashCan }/></span>
-			</div>
+			{ !removable ? null : (
+				<div className="cart-page__remove">
+					<span className="cart-page__remove-btn" onClick={onRemoveClick}><FontAwesomeIcon icon={ faTrashCan }/></span>
+				</div>
+			)}
 			<img src={ book.cover } alt="cover.webp" className={ 'cart-page__cover' }/>
 			<div className="cart-page__info">
 				<strong className="cart-page__name">{ book.name }</strong>

@@ -4,6 +4,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import BookPage from './pages/BookPage'
 import CartPage from './pages/CartPage'
 import HomePage from './pages/HomePage'
+import MyBooksPage from './pages/MyBooksPage'
 import Root from './pages/Root'
 import UserPage from './pages/UserPage'
 import UserInfo from './pages/UserPage/UserInfo'
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
 			{
 				path: 'cart',
 				element: <CartPage/>,
+			},
+			{
+				path: 'my-books',
+				element: <MyBooksPage/>,
 			},
 			{
 				path: 'user',

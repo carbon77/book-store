@@ -10,6 +10,8 @@ function HomePage() {
 	const dispatch = useDispatch()
 	const [isLoadingBooks, setIsLoadingBooks] = useState(false)
 
+	if (!books?.length) return <Loader/>
+
 	return (
 		<div className={ 'home-page-container' }>
 			<div className="block">
