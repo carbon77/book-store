@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import './button.sass'
 
-function Button({ children, color = 'primary', outline = false, icon, onClick, ...fields }) {
+function Button({ children, className, color = 'primary', outline = false, icon, onClick, ...fields }) {
 	return (
 		<button
-			className={ `btn btn-${ color } ${ outline ? `btn-${ color }-outline` : '' } ${!children ? 'icon' : ''}` }
+			className={ `btn btn-${ color } ${ outline ? `btn-${ color }-outline` : '' } ${!children ? 'icon' : ''} ${className}` }
 			{...fields}
 			onClick={onClick}
 		>

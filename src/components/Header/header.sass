@@ -58,17 +58,24 @@
         pointer-events: all
 
       &__items
-        width: 50%
         display: flex
         gap: 5em
         flex-wrap: wrap
 
       &__item
-        width: auto
+        width: 200px
         gap: 5px
 
         &-title
           font-size: 1.5em
+
+        .col
+          cursor: pointer
+          transition: color .2s ease
+
+          &:hover
+            color: colors.$primary
+
 
 
   &__main

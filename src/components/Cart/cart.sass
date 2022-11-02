@@ -1,0 +1,95 @@
+@use "src/styles/colors"
+
+.cart
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100vh
+  z-index: 100
+  backdrop-filter: blur(5px)
+  background: rgba(0, 0, 0, .5)
+  opacity: 0
+  pointer-events: none
+  transition: all .3s ease
+
+  &-open
+    opacity: 1
+    pointer-events: all
+
+    .cart__container
+      transform: translateX(0)
+
+  &__container
+    display: flex
+    flex-direction: column
+    align-items: stretch
+    justify-content: space-between
+    position: absolute
+    top: 0
+    right: 0
+    height: 100vh
+    width: 350px
+    background: white
+    color: black
+    transform: translateX(100%)
+    transition: transform .3s ease
+
+  &__price
+    height: min-content
+    padding: 10px 20px
+
+  &__title
+    padding: 5% 0
+    display: flex
+    justify-content: center
+    align-items: center
+    background: colors.$dark
+    color: white
+    font-size: 2em
+
+  &__submit
+    padding: 5% 0
+    display: flex
+    justify-content: center
+    align-items: center
+    background: colors.$dark
+
+    &-btn
+      padding: 10px 25px
+      font-size: 1.6em
+
+  &__books
+    overflow-y: auto
+    flex-grow: 1
+    margin-top: 15px
+    border-top: 1px solid colors.$secondary
+    border-bottom: 1px solid colors.$secondary
+
+  &__item
+    padding: 10px 20px
+    display: flex
+    align-items: flex-start
+    gap: 15px
+    border-bottom: 1px solid colors.$secondary
+    font-size: 1em
+
+    &-remove-btn
+      width: min-content
+      cursor: pointer
+      transition: color .1s ease
+
+      &:hover
+        color: colors.$danger
+
+    &-body
+      width: 100%
+      display: flex
+      flex-direction: column
+
+    &__name
+      font-size: 1em
+
+  &__cover
+    width: 75px
+    height: auto

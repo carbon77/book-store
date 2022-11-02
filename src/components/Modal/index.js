@@ -1,6 +1,6 @@
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useEffect } from 'react'
 import './modal.sass'
 import Button from '../Button'
 
@@ -10,6 +10,10 @@ function Modal({ title, children, isOpen, setIsOpen, onSubmit, onCancel, cancelT
 			setIsOpen(open => !open)
 		}
 	}
+
+	useEffect(() => {
+		document.body.style.overflow = isOpen ? 'hidden' : 'auto'
+	}, [isOpen])
 
 	return (
 		<div className={ `modal ${ isOpen ? '' : 'modal-close' }` } onClick={ onModalClick }>

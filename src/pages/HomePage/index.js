@@ -8,17 +8,7 @@ import './homePage.sass'
 function HomePage() {
 	const books = useSelector(selectBooks)
 	const dispatch = useDispatch()
-	const [isLoadingBooks, setIsLoadingBooks] = useState(true)
-
-	useEffect(() => {
-		if (!books.length) {
-			dispatch(fetchBooks()).then(() => {
-				setIsLoadingBooks(false)
-			})
-		} else {
-			setIsLoadingBooks(false)
-		}
-	}, [books])
+	const [isLoadingBooks, setIsLoadingBooks] = useState(false)
 
 	return (
 		<div className={ 'home-page-container' }>
