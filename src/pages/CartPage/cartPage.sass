@@ -1,0 +1,61 @@
+@use "src/styles/colors"
+
+.cart-page
+  max-width: 1000px
+  width: 70%
+
+  &__list
+    flex-direction: row
+    flex-wrap: wrap
+
+  &__item
+    width: 180px
+    height: 100%
+    display: flex
+    flex-direction: column
+    gap: 10px
+    padding: 10px 20px
+    border-radius: 10px
+    cursor: pointer
+    transition: all .2s ease
+
+    &:hover
+      box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2)
+
+  &__cover
+    width: auto
+    height: 150px
+    margin: 0 auto
+
+  &__info
+    display: flex
+    flex-direction: column
+
+  &__name
+    display: -webkit-box
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+    overflow: hidden
+    text-overflow: ellipsis
+    line-height: 1em
+
+  &__author
+    display: -webkit-box
+    -webkit-line-clamp: 1
+    -webkit-box-orient: vertical
+    overflow: hidden
+    text-overflow: ellipsis
+    line-height: 1em
+
+  &__remove
+    display: flex
+    justify-content: flex-end
+
+    &-btn
+      transition: color .1s ease
+
+      &:hover
+        color: colors.$danger
+
+  &__buy-btn
+    margin-top: 10px
