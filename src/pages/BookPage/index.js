@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
 import List from '../../components/List'
 import Loader from '../../components/Loader'
+import Review from '../../components/Review'
+import ReviewForm from '../../components/ReviewForm'
 import { fetchBookById, fetchReviews, selectCurrentBook, selectReviews } from '../../store/book'
 import { addBookToCart, removeBookFromCart, selectUser } from '../../store/user'
 import { getDateString } from '../../utils/date'
@@ -173,33 +175,11 @@ function BookPage() {
 									items={ reviews.slice(0, book.reviewCount) }
 									getKey={ review => review.id }
 									gap={ 2 }
-									render={ review => (
-										<div className={ 'review' }>
-											<img src={ review.avatar } alt="avatar" className="review__avatar"/>
-											<div>
-												<div className="review__header">
-													<div>
-														<strong className="review__author">{ review.author }</strong>
-														<small
-															className="review__creation-date">{ getDateString(review.creationDate) }</small>
-													</div>
-													<div className="review__rating">
-														<span>{ review.rating }</span>&nbsp;<FontAwesomeIcon
-														icon={ faStar }/>
-													</div>
-												</div>
-												<div className="review__body">
-													<p className="review__text">{ review.text }</p>
-												</div>
-												<div className="review__footer">
-													<Button icon={ faThumbsUp }
-															outline>Нравится: { review.likes }</Button>
-												</div>
-											</div>
-										</div>
-									) }
+									render={ review => <Review review={review} /> }
 								/>
 							) }
+							<div className="divider"/>
+							{!user ? <p>Чтобы оставить отзыв, нужно войти в систему</p> : <ReviewForm />}
 						</div>
 					</div>
 				</div>

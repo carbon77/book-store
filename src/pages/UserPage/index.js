@@ -32,13 +32,13 @@ function UserPage() {
 	}, [location])
 
 	useEffect(() => {
-		if (!user.name) {
-			setUserInfoLoading(true)
-		} else {
+		if (user?.name) {
 			setUserInfoLoading(false)
+		} else {
+			setUserInfoLoading(true)
 		}
 
-		if (!user) {
+		if (!user || !user?.name) {
 			return navigate('/')
 		}
 	}, [user])
@@ -151,7 +151,7 @@ function UserPage() {
 			setIsOpen={ setSignOutModalOpen }
 			submitText={ 'Выйти' }
 			onSubmit={ () => {
-				navigate("/")
+				// navigate("/")
 				dispatch(signOut())
 			}}
 			cancelText={ 'Отмена' }

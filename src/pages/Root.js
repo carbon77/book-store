@@ -19,20 +19,13 @@ function Root() {
 	useEffect(() => {
 		setIsLoading(true)
 		onAuthStateChanged(auth, user => {
-			if (user) {
-
-				Promise.all([
-						dispatch(setUser({
-							id: user.uid,
-							email: user.email,
-						})),
-						dispatch(loadUserInfo(user.uid)),
-						dispatch(fetchBooks())
-				]).then(() => {
-					setIsLoading(false)
-				})
-			}
-			setIsLoading(false)
+			Promise.all([
+				user ? dispatch(setUser({id : user.uid, email: user.email})) : null,
+				user ? dispatch(loadUserInfo(user.uid)) : null,
+				dispatch(fetchBooks())
+			]).then(() => {
+				setIsLoading(false)
+			})
 		})
 	}, [])
 

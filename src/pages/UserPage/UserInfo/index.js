@@ -1,6 +1,6 @@
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import Input from '../../../components/Input'
@@ -14,7 +14,7 @@ function UserInfo() {
 	const [passwordModalOpen, setPasswordModalOpen] = useState(false)
 	const { control, handleSubmit, formState: { errors } } = useForm({
 		defaultValues: {
-			email: user.email,
+			email: user?.email,
 		},
 	})
 

@@ -33,7 +33,10 @@ function Modal({ title, children, isOpen, setIsOpen, onSubmit, onCancel, cancelT
 					? <div className={ 'modal__footer' }>
 						{ onCancel ? <Button onClick={ onCancel } color={ 'secondary' }>{ cancelText }</Button> : null }
 						{ onSubmit ? <Button
-							onClick={ onSubmit }
+							onClick={ () => {
+								setIsOpen(false)
+								onSubmit()
+							} }
 							color={ 'primary' }
 							type={ 'submit' }
 							form={ form }
