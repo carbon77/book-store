@@ -2,6 +2,7 @@
   "name": "book-store",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://carbon77.github.io/",
   "dependencies": {
     "@firebase/auth": "^0.20.8",
     "@firebase/firestore": "^3.6.0",
@@ -21,6 +22,8 @@
     "sass": "^1.55.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
@@ -44,5 +47,8 @@
   },
   "imports": {
     "#src/*": "./src/*"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }

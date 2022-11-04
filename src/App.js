@@ -11,7 +11,7 @@ import UserInfo from './pages/UserPage/UserInfo'
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: 'book-store',
 		element: <Root/>,
 		children: [
 			{
