@@ -40,7 +40,7 @@ function BookRowItem({ book, size }) {
 
 	return (
 		<div
-			onClick={ () => navigate(`/books/${ book.id }`) }
+			onClick={ () => navigate(`books/${ book.id }`) }
 			className={ `book-row__item ${ size ? size : '' }` }
 		>
 			<img src={ book.cover } alt={ 'cover.webp' }/>

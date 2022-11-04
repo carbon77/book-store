@@ -2,7 +2,7 @@
   "name": "book-store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://carbon77.github.io/",
+  "homepage": "https://carbon77.github.io/book-store/",
   "dependencies": {
     "@firebase/auth": "^0.20.8",
     "@firebase/firestore": "^3.6.0",

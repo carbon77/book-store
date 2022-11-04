@@ -11,7 +11,7 @@ import UserInfo from './pages/UserPage/UserInfo'
 
 const router = createBrowserRouter([
 	{
-		path: 'book-store',
+		path: '/',
 		element: <Root/>,
 		children: [
 			{
@@ -54,7 +54,9 @@ const router = createBrowserRouter([
 			},
 		],
 	},
-])
+], {
+	basename: '/book-store'
+})
 
 function App() {
 	return <RouterProvider router={ router }/>

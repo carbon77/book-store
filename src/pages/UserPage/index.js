@@ -26,8 +26,8 @@ function UserPage() {
 	const [signOutModalOpen, setSignOutModalOpen] = useState(false)
 
 	useEffect(() => {
-		if (location.pathname === '/user') {
-			return navigate('/user/info')
+		if (location.pathname.endsWith('/user')) {
+			return navigate('info')
 		}
 	}, [location])
 
@@ -39,7 +39,7 @@ function UserPage() {
 		}
 
 		if (!user || !user?.name) {
-			return navigate('/')
+			return navigate('')
 		}
 	}, [user])
 
@@ -80,7 +80,7 @@ function UserPage() {
 
 		return e => {
 			setCheckedItem(index)
-			navigate(`/user/${ link.path }`)
+			navigate(`${ link.path }`)
 		}
 	}
 

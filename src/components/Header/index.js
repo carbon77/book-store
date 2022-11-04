@@ -19,7 +19,7 @@ function Header({ setIsCartOpen }) {
 			<header className={ 'header' }>
 				<div className="header__main">
 
-					<Link to={ '/' } className={ 'header__title' }><h1>Book<span>Store</span></h1></Link>
+					<Link to={ '' } className={ 'header__title' }><h1>Book<span>Store</span></h1></Link>
 
 					<form className="header__search-form">
 						<input type="search" name={ 'search_query' } placeholder={ 'Искать книгу, автора, жанр...' }/>
