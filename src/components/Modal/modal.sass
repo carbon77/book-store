@@ -17,7 +17,7 @@ $padding-y: 30px
   background: rgba(0, 0, 0, .5)
   transition: all .2s ease-in-out
   backdrop-filter: blur(3px)
-  z-index: 1
+  z-index: 1001
   overflow-y: auto
   pointer-events: auto
 
@@ -67,3 +67,8 @@ $padding-y: 30px
     padding: 13px $padding-y
     border-radius: 0 0 $modal-border-radius $modal-border-radius
     background: colors.$dark
+
+
+@media screen and (max-width: 480px) and (orientation: portrait)
+  .modal__content
+    width: 90%

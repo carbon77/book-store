@@ -26,7 +26,7 @@ function MyBooksPage() {
 						</div>
 						<div className="block-body">
 							<List
-								className={'wrap list-row'}
+								className={'wrap list-row jc-center list-gap-1'}
 								items={books}
 								getKey={book => book.id}
 								render={book => <CartPageItem user={user} book={book} removable={false}/>}

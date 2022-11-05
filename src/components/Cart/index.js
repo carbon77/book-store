@@ -1,3 +1,5 @@
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
@@ -46,7 +48,10 @@ function Cart({ isOpen, setIsOpen }) {
 	return (
 		<div className={ `cart ${ isOpen ? 'cart-open' : '' }` } onClick={ onCartClick }>
 			<div className="cart__container">
-				<h2 className="cart__title">Корзина</h2>
+				<h2 className="cart__title" onClick={() => setIsOpen(open => !open)}>
+					<FontAwesomeIcon icon={faChevronLeft} />
+					<span>Корзина</span>
+				</h2>
 				<div className="cart__books">
 					<List
 						getKey={ book => book.id }
@@ -54,7 +59,10 @@ function Cart({ isOpen, setIsOpen }) {
 						render={ book => <CartItem user={ user } book={ book }/> }
 					/>
 				</div>
-				<p className="cart__price">Итого: { totalPrice } &#8381;</p>
+				<p className="cart__price">
+					<p>Книг в корзине: { userBooks.length }</p>
+					<p>Итого: { totalPrice } &#8381;</p>
+				</p>
 				<div className="cart__submit">
 					<Button
 						color={ 'primary' }

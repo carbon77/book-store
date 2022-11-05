@@ -1,6 +1,8 @@
 @use "src/styles/colors"
 
 .cart
+  display: flex
+  justify-content: flex-end
   position: fixed
   top: 0
   left: 0
@@ -25,10 +27,7 @@
     flex-direction: column
     align-items: stretch
     justify-content: space-between
-    position: absolute
-    top: 0
-    right: 0
-    height: 100vh
+    height: 100%
     width: 350px
     background: white
     color: black
@@ -40,13 +39,18 @@
     padding: 10px 20px
 
   &__title
-    padding: 5% 0
+    padding: 5%
     display: flex
-    justify-content: center
+    justify-content: stretch
     align-items: center
     background: colors.$dark
     color: white
     font-size: 2em
+    cursor: pointer
+
+    span
+      width: 100%
+      text-align: center
 
   &__submit
     padding: 5% 0
@@ -93,3 +97,7 @@
   &__cover
     width: 75px
     height: auto
+
+@media screen and (max-width: 480px) and (orientation: portrait)
+  .cart__container
+    width: 100%

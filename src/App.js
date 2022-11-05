@@ -40,15 +40,15 @@ const router = createBrowserRouter([
 					},
 					{
 						path: 'about_me',
-						element: <div>Обо мне</div>,
+						element: <div className={'block-title'}><h2>Обо мне</h2></div>,
 					},
 					{
 						path: 'history',
-						element: <div>История операция</div>,
+						element: <div className={'block-title'}><h2>История операция</h2></div>,
 					},
 					{
 						path: 'payment',
-						element: <div>Способы оплаты</div>,
+						element: <div className={'block-title'}><h2>Способы оплаты</h2></div>,
 					},
 				],
 			},

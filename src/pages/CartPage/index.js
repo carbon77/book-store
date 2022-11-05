@@ -57,7 +57,7 @@ function CartPage() {
 								items={userBooks}
 								getKey={book => book.id}
 								render={(book) => <CartPageItem user={user} book={book} removable={true} />}
-								className={'cart-page__list'}
+								className={'cart-page__list jc-center list-gap-1'}
 							/>
 						</div>
 					</div>
