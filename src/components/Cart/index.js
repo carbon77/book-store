@@ -60,8 +60,9 @@ function Cart({ isOpen, setIsOpen }) {
 					/>
 				</div>
 				<p className="cart__price">
-					<p>Книг в корзине: { userBooks.length }</p>
-					<p>Итого: { totalPrice } &#8381;</p>
+					<span>Книг в корзине: { userBooks.length }</span>
+					<br/>
+					<span>Итого: { totalPrice } &#8381;</span>
 				</p>
 				<div className="cart__submit">
 					<Button

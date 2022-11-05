@@ -9,6 +9,11 @@ import Root from './pages/Root'
 import UserPage from './pages/UserPage'
 import UserInfo from './pages/UserPage/UserInfo'
 
+window.addEventListener('resize', () => {
+	let vh = window.innerHeight * 0.01
+	document.documentElement.style.setProperty('--vh', `${vh}px`)
+})
+
 const router = createBrowserRouter([
 	{
 		path: '/',
