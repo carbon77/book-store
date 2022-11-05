@@ -42,16 +42,27 @@
   color: colors.$grey
 
 .book-info
+  display: flex
+  flex-direction: column
+  gap: 5px
   width: 70%
   font-size: .8em
-
-  &__title
-    display: inline-block
-    margin: 10px 0
 
   &__item
     display: flex
     justify-content: space-between
+
+    strong
+      width: 50%
+
+.block-book__main
+  display: flex
+  gap: 15px
+
+  img
+    width: 50%
+    height: auto
+    margin: auto
 
 .book-buttons
   margin-top: 20px
@@ -86,3 +97,17 @@
 
   &__rating
     color: colors.$primary
+
+
+@media screen and (max-width: 480px) and (orientation: portrait)
+  .book-page-container
+    width: 100%
+
+  .book-info
+    width: 100%
+
+  .block-book__main
+    flex-direction: column
+
+  .book-buttons
+    width: 100%

@@ -90,59 +90,49 @@ function UserPage() {
 	}
 
 	return ( <div className={ 'user-page-container' }>
-		<div className="row user-row">
-			<div className="col">
-				<div className="block">
-					<div className="block-body">
-						<div className="row user-block">
-							{ userInfoLoading ? <div className={ 'col' }><Loader/></div> : ( <>
-								<div className="col w-10">
-									<div className="user-avatar">
-										{ !user.avatarUrl ? null : (
-											<img src={ user.avatarUrl } alt="avatar.jpg"/>
-										) }
-										<label
-											htmlFor={ 'avatar-input' }
-											className={ `user-avatar__button ${ user.avatarUrl ? null : 'show' }` }
-										>
-											<FontAwesomeIcon icon={ faDownload }/>
-										</label>
-										<input type="file" id={ 'avatar-input' } accept={ 'image/jpeg' }
-											   onChange={ onChange }/>
-									</div>
-								</div>
-								<div className="col">
-									<h1>{ user?.name }</h1>
-								</div>
-							</> ) }
+		<div className="block block-user-info">
+			<div className="block-body">
+				<div className="row user-block">
+					{ userInfoLoading ? <div className={ 'col' }><Loader/></div> : ( <>
+						<div className="col w-auto">
+							<div className="user-avatar">
+								{ !user.avatarUrl ? null : (
+									<img src={ user.avatarUrl } alt="avatar.jpg"/>
+								) }
+								<label
+									htmlFor={ 'avatar-input' }
+									className={ `user-avatar__button ${ user.avatarUrl ? null : 'show' }` }
+								>
+									<FontAwesomeIcon icon={ faDownload }/>
+								</label>
+								<input type="file" id={ 'avatar-input' } accept={ 'image/jpeg' }
+									   onChange={ onChange }/>
+							</div>
 						</div>
-					</div>
+						<div className="col">
+							<h1>{ user?.name }</h1>
+						</div>
+					</> ) }
 				</div>
 			</div>
 		</div>
-		<div className={ 'row' }>
-			<div className={ 'col w-40' }>
-				<div className="block" style={{ padding: "15px 0"}}>
-					<List
-						items={ links }
-						getKey={ (_, index) => index }
-						render={ (link, index) => (
-							<div
-								className={ `list-link ${ index === checkedItem ? 'checked' : null }` }
-								onClick={ onListItemClick(link, index) }
-							>
-								<FontAwesomeIcon icon={ link.icon } className={ 'list-link__icon' }/>
-								{ link.text }
-							</div>
-						) }
-					/>
-				</div>
-			</div>
-			<div className={ 'col' }>
-				<div className="block">
-					<Outlet/>
-				</div>
-			</div>
+		<div className="block block-user-sidebar">
+			<List
+				items={ links }
+				getKey={ (_, index) => index }
+				render={ (link, index) => (
+					<div
+						className={ `list-link ${ index === checkedItem ? 'checked' : null }` }
+						onClick={ onListItemClick(link, index) }
+					>
+						<FontAwesomeIcon icon={ link.icon } className={ 'list-link__icon' }/>
+						{ link.text }
+					</div>
+				) }
+			/>
+		</div>
+		<div className="block block-user-main">
+			<Outlet/>
 		</div>
 
 		<Modal
@@ -151,9 +141,9 @@ function UserPage() {
 			setIsOpen={ setSignOutModalOpen }
 			submitText={ 'Выйти' }
 			onSubmit={ () => {
-				// navigate("/")
+				navigate('/')
 				dispatch(signOut())
-			}}
+			} }
 			cancelText={ 'Отмена' }
 			onCancel={ () => setSignOutModalOpen(false) }
 		>

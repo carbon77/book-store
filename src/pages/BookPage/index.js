@@ -78,75 +78,71 @@ function BookPage() {
 								</span>
 							</div>
 
-							<div className="row">
-								<div className="col w-50">
-									<img src={ book.cover } alt="cover.webp" className={ 'book-cover' }/>
-								</div>
-								<div className="col">
-									<div className="row column gap-0">
-										<h3 className="book-title">{ book.name }</h3>
-										<p className="book-author">Автор: <Link to={ '/' }>{ book.author }</Link></p>
-										{ !book.achievements?.length ? null : (
-											<div className="book-achievements">
-												{ book.achievements.map((a, idx) => {
-													if (a === 'Бестселлер')
-														return <span key={ idx }
-																	 className={ 'badge primary' }>{ a }</span>
-													return <span key={ idx } className={ 'badge dark' }>{ a }</span>
-												}) }
-											</div>
-										) }
-										<div className="book-rating-row">
+							<div className="block-book__main">
+								<img src={ book.cover } alt="cover.webp" className={ 'book-cover' }/>
+								<div className="row column gap-0">
+									<h3 className="book-title">{ book.name }</h3>
+									<p className="book-author">Автор: <Link to={ '/' }>{ book.author }</Link></p>
+									{ !book.achievements?.length ? null : (
+										<div className="book-achievements">
+											{ book.achievements.map((a, idx) => {
+												if (a === 'Бестселлер')
+													return <span key={ idx }
+																 className={ 'badge primary' }>{ a }</span>
+												return <span key={ idx } className={ 'badge dark' }>{ a }</span>
+											}) }
+										</div>
+									) }
+									<div className="book-rating-row">
 											<span className="book-rating">
 												{ book.rating }&nbsp;<FontAwesomeIcon icon={ faStar }/>
 											</span>
 
-											<span className="book-reviewCount">
+										<span className="book-reviewCount">
 												{ book.reviewCount }&nbsp;<FontAwesomeIcon icon={ faComment }/>
 											</span>
-										</div>
-										<div className="book-info">
-											<strong className={ 'book-info__title' }>Информация о книге:</strong>
-											<div className="book-info__item">
-												<strong>Жанр</strong>
-												<strong>{ book.genre }</strong>
-											</div>
-											<div className="book-info__item">
-												<strong>Возврастное ограничение</strong>
-												<strong>{ book.age }+</strong>
-											</div>
-											<div className="book-info__item">
-												<strong>Дата выхода</strong>
-												<strong>{ getDateString(book.releaseDate) }</strong>
-											</div>
-											<div className="book-info__item">
-												<strong>Объём</strong>
-												<strong>{ book.volume } стр.</strong>
-											</div>
-										</div>
-
-										{ !user ? <div>Нужно войти</div> : (
-											<div className="book-buttons">
-												{ isAddedToCart ? (
-													<Button
-														color={ 'dark' }
-														onClick={ onRemoveFromCartClick }
-													>В корзине</Button>
-												) : (
-													<Button
-														color={ 'primary' }
-														icon={ faCartShopping }
-														onClick={ onBuyClick }
-													>
-														Купить { book.price }&#8381;
-													</Button>
-												) }
-
-
-												<Button color={ 'dark' } icon={ faBookmark }>В закладки</Button>
-											</div>
-										) }
 									</div>
+									<div className="book-info">
+										<strong className={ 'book-info__title' }>Информация о книге:</strong>
+										<div className="book-info__item">
+											<strong>Жанр</strong>
+											<strong>{ book.genre }</strong>
+										</div>
+										<div className="book-info__item">
+											<strong>Возврастное ограничение</strong>
+											<strong>{ book.age }+</strong>
+										</div>
+										<div className="book-info__item">
+											<strong>Дата выхода</strong>
+											<strong>{ getDateString(book.releaseDate) }</strong>
+										</div>
+										<div className="book-info__item">
+											<strong>Объём</strong>
+											<strong>{ book.volume } стр.</strong>
+										</div>
+									</div>
+
+									{ !user ? <div>Нужно войти</div> : (
+										<div className="book-buttons">
+											{ isAddedToCart ? (
+												<Button
+													color={ 'dark' }
+													onClick={ onRemoveFromCartClick }
+												>В корзине</Button>
+											) : (
+												<Button
+													color={ 'primary' }
+													icon={ faCartShopping }
+													onClick={ onBuyClick }
+												>
+													Купить { book.price }&#8381;
+												</Button>
+											) }
+
+
+											<Button color={ 'dark' } icon={ faBookmark }>В закладки</Button>
+										</div>
+									) }
 								</div>
 							</div>
 						</div>
@@ -174,12 +170,12 @@ function BookPage() {
 								<List
 									items={ reviews.slice(0, book.reviewCount) }
 									getKey={ review => review.id }
-									gap={ 2 }
-									render={ review => <Review review={review} /> }
+									render={ review => <Review review={ review }/> }
+									className={'list-gap-2'}
 								/>
 							) }
 							<div className="divider"/>
-							{!user ? <p>Чтобы оставить отзыв, нужно войти в систему</p> : <ReviewForm />}
+							{ !user ? <p>Чтобы оставить отзыв, нужно войти в систему</p> : <ReviewForm/> }
 						</div>
 					</div>
 				</div>

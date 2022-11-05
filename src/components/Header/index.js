@@ -1,4 +1,12 @@
-import { faBook, faCartShopping, faList, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import {
+	faBars,
+	faBook,
+	faCartShopping,
+	faList,
+	faMagnifyingGlass,
+	faSignIn,
+	faUser,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -8,6 +16,7 @@ import AuthModalBody from '../AuthModalBody'
 import Loader from '../Loader'
 import Modal from '../Modal'
 import './header.sass'
+import './header_media.sass'
 
 function Header({ setIsCartOpen }) {
 	const user = useSelector(selectUser)
@@ -27,9 +36,10 @@ function Header({ setIsCartOpen }) {
 					</form>
 
 					<div className="header__nav">
-						{ user
-							? ( !user.name ? <Loader size={ 'small' }/> : <>
-								<div className="header__nav-item user-item" onClick={ () => navigate('user') }>
+						{ user ? (
+							!user.name ? <Loader size={ 'small' }/> : <>
+								<div className="header__nav-item user-item" id={ 'nav-item-user' }
+									 onClick={ () => navigate('user') }>
 									{ !user.avatarUrl ? null : (
 										<img src={ user.avatarUrl } alt="avatar.jpg" className={ 'user-item__avatar' }/>
 									) }
@@ -39,19 +49,22 @@ function Header({ setIsCartOpen }) {
 										<small>1000 руб.</small>
 									</div>
 								</div>
-								<div className="header__nav-item" onClick={() => navigate("my-books")}>
-									<FontAwesomeIcon icon={ faBook }/>Мои книги
+								<div className="header__nav-item" id={ 'nav-item-my-books' }
+									 onClick={ () => navigate('my-books') }>
+									<FontAwesomeIcon icon={ faBook }/>
+									<span>Мои книги</span>
 								</div>
-							</> )
-							: (
-								<div className="header__nav-item" onClick={ () => setIsModalOpen(mo => !mo) }>
-									Войти
-								</div>
-							)
+							</> ) : (
+							<div className="header__nav-item" id={ 'nav-item-login' }
+								 onClick={ () => setIsModalOpen(mo => !mo) }>
+								<FontAwesomeIcon icon={ faSignIn }/>
+								<span>Войти</span>
+							</div>
+						)
 						}
-						<div className="header__nav-item" onClick={() => setIsCartOpen(open => !open)}>
+						<div className="header__nav-item" onClick={ () => setIsCartOpen(open => !open) }>
 							<FontAwesomeIcon icon={ faCartShopping }/>
-							{user?.cart ? user.cart.length : 0}
+							<span>{ user?.cart ? user.cart.length : 0 }</span>
 						</div>
 					</div>
 				</div>
