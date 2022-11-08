@@ -1,0 +1,64 @@
+@use "src/styles/colors"
+
+.review-form
+  display: flex
+  gap: 20px
+
+  &__avatar
+    width: 50px
+    height: 50px
+    border-radius: 50%
+
+  &__body
+    width: 100%
+    display: flex
+    flex-direction: column
+    gap: 15px
+
+  &__name
+    font-size: 1.4em
+
+  &__submit
+    align-self: flex-start
+
+  &__input
+    width: 60%
+    resize: none
+    font-size: .9em
+    line-height: 1em
+    height: calc(1em * 7)
+    padding: 10px 5px
+    border-radius: 5px
+
+  &__rating
+    display: flex
+    gap: 10px
+
+    .stars
+      display: flex
+      flex-direction: row-reverse
+      align-items: center
+
+    .stars:hover .star
+      color: colors.$secondary
+
+    .star
+      color: colors.$secondary
+      cursor: pointer
+      font-size: 1.2em
+      transition: all .1s ease
+
+      &.checked
+        color: colors.$primary
+
+    .star:hover, .star:hover ~ .star
+      color: colors.$primary !important
+
+
+@media screen and (max-width: 480px)
+  .review-form
+    &__avatar
+      display: none
+
+    &__input
+      width: 100%

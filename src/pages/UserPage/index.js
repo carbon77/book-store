@@ -110,7 +110,11 @@ function UserPage() {
 							</div>
 						</div>
 						<div className="col">
-							<h1>{ user?.name }</h1>
+							<div className="row column gap-0">
+								<div className="col"><h1>{ user?.name }</h1></div>
+								<div className="col">Баланс: 1000 &#8381;</div>
+							</div>
+
 						</div>
 					</> ) }
 				</div>
@@ -141,8 +145,8 @@ function UserPage() {
 			setIsOpen={ setSignOutModalOpen }
 			submitText={ 'Выйти' }
 			onSubmit={ () => {
-				navigate('/')
 				dispatch(signOut())
+				navigate('/')
 			} }
 			cancelText={ 'Отмена' }
 			onCancel={ () => setSignOutModalOpen(false) }

@@ -163,6 +163,17 @@ function BookPage() {
 				<div className="col">
 					<div className="block">
 						<div className="block-title">
+							<h3>Оставить отзыв</h3>
+						</div>
+						<div className="block-body">
+							<ReviewForm />
+						</div>
+					</div>
+				</div>
+
+				<div className="col">
+					<div className="block">
+						<div className="block-title">
 							<h3>Отзывы</h3>
 						</div>
 						<div className="block-body">
@@ -174,8 +185,6 @@ function BookPage() {
 									className={'list-gap-2'}
 								/>
 							) }
-							<div className="divider"/>
-							{ !user ? <p>Чтобы оставить отзыв, нужно войти в систему</p> : <ReviewForm/> }
 						</div>
 					</div>
 				</div>

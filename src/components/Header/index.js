@@ -3,7 +3,7 @@ import {
 	faBook,
 	faCartShopping,
 	faList,
-	faMagnifyingGlass,
+	faMagnifyingGlass, faSearch,
 	faSignIn,
 	faUser,
 } from '@fortawesome/free-solid-svg-icons'
@@ -36,6 +36,9 @@ function Header({ setIsCartOpen }) {
 					</form>
 
 					<div className="header__nav">
+						<div className="header__nav-item" id={ 'nav-item-search' }>
+							<FontAwesomeIcon icon={ faSearch }/>
+						</div>
 						{ user ? (
 							!user.name ? <Loader size={ 'small' }/> : <>
 								<div className="header__nav-item user-item" id={ 'nav-item-user' }
@@ -46,7 +49,7 @@ function Header({ setIsCartOpen }) {
 
 									<div className="user-item__info">
 										<strong>{ user.name }</strong>
-										<small>1000 руб.</small>
+										<small>1000 &#8381;</small>
 									</div>
 								</div>
 								<div className="header__nav-item" id={ 'nav-item-my-books' }
