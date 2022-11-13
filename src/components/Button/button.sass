@@ -1,5 +1,6 @@
 @use "src/styles/colors"
 
+// Миксин для создания кнопки определённого цвета
 @mixin create-btn($name, $color, $text-color)
   .btn-#{$name}
     background: $color
@@ -47,13 +48,10 @@
     background: colors.$grey
     border: 3px solid colors.$grey
     color: colors.$secondary
-
     &:hover
       background: colors.$grey
       border: 3px solid colors.$grey
       color: colors.$secondary
-
-
 
 @include create-btn("primary", colors.$primary, white)
 @include create-btn("danger", colors.$danger, white)
