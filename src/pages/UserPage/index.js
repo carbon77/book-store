@@ -145,8 +145,9 @@ function UserPage() {
 			setIsOpen={ setSignOutModalOpen }
 			submitText={ 'Выйти' }
 			onSubmit={ () => {
-				dispatch(signOut())
-				navigate('/')
+				dispatch(signOut()).then(() => {
+					navigate('/')
+				})
 			} }
 			cancelText={ 'Отмена' }
 			onCancel={ () => setSignOutModalOpen(false) }

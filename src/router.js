@@ -7,6 +7,8 @@ import MyBooksPage from './pages/MyBooksPage'
 import Root from './pages/Root'
 import UserPage from './pages/UserPage'
 import AboutMe from './pages/UserPage/AboutMe'
+import PaymentInfo from './pages/UserPage/PaymentInfo'
+import UserHistory from './pages/UserPage/UserHistory'
 import UserInfo from './pages/UserPage/UserInfo'
 
 export default createBrowserRouter([
@@ -44,16 +46,14 @@ export default createBrowserRouter([
 					},
 					{
 						path: 'history',
-						element: <div className={ 'block-title' }><h2>История операция</h2></div>,
+						element: <UserHistory/>,
 					},
 					{
 						path: 'payment',
-						element: <div className={ 'block-title' }><h2>Способы оплаты</h2></div>,
+						element: <PaymentInfo/>,
 					},
 				],
 			},
 		],
 	},
-], {
-	basename: '/book-store',
-})
+], { basename: '/book-store' })
