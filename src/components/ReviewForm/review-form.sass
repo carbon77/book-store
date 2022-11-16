@@ -29,6 +29,14 @@
     height: calc(1em * 7)
     padding: 10px 5px
     border-radius: 5px
+    border: 1px solid colors.$grey
+    background: colors.$secondary
+    outline: none
+    transition: all .3s ease
+
+    &:focus
+      background: white
+      border-color: colors.$primary
 
   &__rating
     display: flex

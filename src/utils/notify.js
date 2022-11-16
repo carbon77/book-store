@@ -1,10 +1,5 @@
 export function show(title, description) {
 	let notificationContainer = document.getElementById("notification-container")
-	if (!notificationContainer) {
-		notificationContainer = document.createElement("div")
-		notificationContainer.id = "notification-container"
-		document.body.appendChild(notificationContainer)
-	}
 
 	const notification = document.createElement("div")
 	notification.classList.add("notification", "notification-open")
@@ -27,7 +22,7 @@ export function show(title, description) {
 
 	setTimeout(() => {
 		notification.classList.remove("notification-open")
-	}, 0)
+	}, 10)
 
 	setTimeout(() => {
 		notification.classList.add("notification-close")
@@ -35,5 +30,5 @@ export function show(title, description) {
 
 	setTimeout(() => {
 		notificationContainer.removeChild(notification)
-	}, 3000)
+	}, 2300)
 }

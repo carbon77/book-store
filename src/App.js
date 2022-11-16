@@ -9,6 +9,13 @@ window.addEventListener('resize', () => {
 	document.documentElement.style.setProperty('--vh', `${ vh }px`)
 })
 
+let notificationContainer = document.getElementById("notification-container")
+if (!notificationContainer) {
+	notificationContainer = document.createElement("div")
+	notificationContainer.id = "notification-container"
+	document.body.appendChild(notificationContainer)
+}
+
 function App() {
 	return (
 		<StoreProvider store={ store }>

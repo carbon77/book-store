@@ -25,7 +25,8 @@ function Review({ review }) {
 				</div>
 				<div className="review__footer">
 					<Button icon={ faThumbsUp }
-							outline>Нравится: { review.likes }</Button>
+							className={"like-btn"}
+							outline>{ review.likes }</Button>
 				</div>
 			</div>
 		</div>
