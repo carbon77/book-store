@@ -1,7 +1,9 @@
 import { arrayRemove, arrayUnion, collection, doc, getDoc, getDocs, updateDoc } from '@firebase/firestore'
 import { db } from './index'
 
+// Сервис для работы с книгами
 export default {
+	// Загрузка книг
 	async loadBooks() {
 		let snapshot = await getDocs(collection(db, 'books'))
 		let books = []
@@ -13,6 +15,7 @@ export default {
 		return books
 	},
 
+	// Загрузка конкретной книги
 	async loadBook(bookId) {
 		let bookReference = doc(db, 'books', bookId)
 		let snapshot = await getDoc(bookReference)
@@ -23,6 +26,7 @@ export default {
 		}
 	},
 
+	// Загрузка отзывов
 	async loadReviews() {
 		let snapshot = await getDocs(collection(db, 'reviews'))
 		let reviews = []
@@ -34,6 +38,7 @@ export default {
 		return reviews
 	},
 
+	// Добавление книги в корзину пользователя
 	async addBookToCart(userId, bookId) {
 		const userRef = doc(db, 'userInfo', userId)
 		await updateDoc(userRef, {
@@ -41,6 +46,7 @@ export default {
 		})
 	},
 
+	// Удаление книги из корзины пользователя
 	async removeBookFromCart(userId, bookId) {
 		const userRef = doc(db, 'userInfo', userId)
 		await updateDoc(userRef, {

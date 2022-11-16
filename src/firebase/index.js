@@ -3,6 +3,7 @@ import { getFirestore } from '@firebase/firestore'
 import { getStorage } from '@firebase/storage'
 import { initializeApp } from 'firebase/app'
 
+// Данные конфигурации Firebase приложения
 const firebaseConfig = {
 	apiKey: 'AIzaSyD0G-l8NTLltbp4ugvWfbQjj8ALKS8s3Lw',
 	authDomain: 'book-store-83a29.firebaseapp.com',
