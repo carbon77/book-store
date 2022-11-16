@@ -4,7 +4,7 @@ import bookReducer from "./book"
 
 export default configureStore({
     reducer: {
-        user: userReducer,
-        book: bookReducer,
+        user: userReducer, // reducer для работы с пользователями
+        book: bookReducer, // reducer для работы с книгами
     }
 })
