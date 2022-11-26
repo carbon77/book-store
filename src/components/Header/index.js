@@ -49,13 +49,12 @@ function Header({ setIsCartOpen }) {
 
 									<div className="user-item__info">
 										<strong>{ user.name }</strong>
-										<small>1000 &#8381;</small>
+										<small>Группа: ИКБО-01-21</small>
 									</div>
 								</div>
 								<div className="header__nav-item" id={ 'nav-item-my-books' }
 									 onClick={ () => navigate('my-books') }>
 									<FontAwesomeIcon icon={ faBook }/>
-									<span>Мои книги</span>
 								</div>
 							</> ) : (
 							<div className="header__nav-item" id={ 'nav-item-login' }
