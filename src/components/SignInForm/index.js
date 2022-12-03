@@ -16,7 +16,11 @@ function SignInForm({ onSubmit: closeModal }) {
 		dispatch(login(data.email, data.password))
 			.then(() => {
 				setIsLoading(false)
-				show('Авторизация', 'Вы успешно вошли!')
+				show({
+					title: 'Авторизация успешна',
+					description: 'Вы вошли в систему',
+					icon: 'fa-solid fa-right-to-bracket',
+				})
 				closeModal()
 			})
 	}

@@ -1,6 +1,6 @@
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import Input from '../../../components/Input'
@@ -19,7 +19,11 @@ function UserInfo() {
 	})
 
 	function onSubmit(data) {
-		show(null, 'Электронная почта успешно изменена')
+		show({
+			title: 'Изменено',
+			description: 'Электронная почта успешно изменена',
+			icon: 'fa-solid fa-pencil',
+		})
 	}
 
 	return (
@@ -75,7 +79,11 @@ function UserInfo() {
 						</div>
 					</div>
 					<div className="col w-40 d-flex jc-end ai-start">
-						<div className="btn-icon" onClick={ () => show(null, 'Телефон успешно изменён') }>
+						<div className="btn-icon" onClick={ () => show({
+							title: 'Изменено',
+							description: 'Телефон успешно изменён',
+							icon: 'fa-solid fa-pencil',
+						}) }>
 							<FontAwesomeIcon icon={ faEdit }/>
 						</div>
 					</div>
@@ -99,7 +107,11 @@ function UserInfo() {
 				isOpen={ passwordModalOpen }
 				setIsOpen={ setPasswordModalOpen }
 				title={ 'Изменение пароля' }
-				onSubmit={ () => show(null, 'Пароль успешно изменён') }
+				onSubmit={ () => show({
+					title: 'Изменено',
+					description: 'Пароль успешно изменён',
+					icon: 'fa-solid fa-pencil',
+				}) }
 				submitText={ 'Изменить' }
 			>
 				<form className={ 'form' }>

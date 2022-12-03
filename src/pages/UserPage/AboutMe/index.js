@@ -25,7 +25,11 @@ function AboutMe() {
 					</div>
 					<div className="col w-40 d-flex jc-end ai-start">
 						<div className="btn-icon"
-							 onClick={ () => show('Изменено', `Фамилия изменена на ${ firstName }`) }>
+							 onClick={ () => show({
+								 title: 'Изменено',
+								 description: `Фамилия изменена на ${ firstName }`,
+								 icon: 'fa-solid fa-pencil',
+							 }) }>
 							<FontAwesomeIcon icon={ faEdit }/>
 						</div>
 					</div>
@@ -41,7 +45,11 @@ function AboutMe() {
 					</div>
 					<div className="col w-40 d-flex jc-end ai-start">
 						<div className="btn-icon"
-							 onClick={ () => show('Изменено', `Фамилия изменена на ${ secondName }`) }>
+							 onClick={ () => show({
+								 title: 'Изменено',
+								 description: `Фамилия изменена на ${ secondName }`,
+								 icon: 'fa-solid fa-pencil',
+							 }) }>
 							<FontAwesomeIcon icon={ faEdit }/>
 						</div>
 					</div>

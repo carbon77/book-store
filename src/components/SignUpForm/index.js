@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { createUser } from '../../store/user'
+import { show } from '../../utils/notify'
 import Button from '../Button'
 import Input from '../Input'
 
@@ -10,10 +11,21 @@ function SignUpForm({ onSubmit: closeModal }) {
 	const dispatch = useDispatch()
 	const [isLoading, setIsLoading] = useState(false)
 
-	async function onSubmit({ name, email, password }) {
-		setIsLoading(true)
-		await dispatch(createUser(name, email, password))
-		closeModal()
+	function onSubmit({ name, email, password }) {
+		show({
+			title: 'Регистрация недоступна',
+			icon: 'fa-solid fa-ban',
+		})
+		// setIsLoading(true)
+		// dispatch(createUser(name, email, password)).then(() => {
+		// 	setIsLoading(false)
+		// 	show({
+		// 		title: 'Регистрация успешна',
+		// 		description: 'Вы вошли в систему',
+		// 		icon: 'fa-solid fa-right-to-bracket',
+		// 	})
+		// 	closeModal()
+		// })
 	}
 
 	return (

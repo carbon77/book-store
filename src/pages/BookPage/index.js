@@ -1,4 +1,4 @@
-import { faBookmark, faCartShopping, faComment, faStar, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark, faCartShopping, faComment, faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +12,7 @@ import ReviewForm from '../../components/ReviewForm'
 import { fetchBookById, fetchReviews, selectCurrentBook, selectReviews } from '../../store/book'
 import { addBookToCart, removeBookFromCart, selectUser } from '../../store/user'
 import { getDateString } from '../../utils/date'
+import { show } from '../../utils/notify'
 import './bookPage.sass'
 
 function BookPage() {
@@ -57,10 +58,20 @@ function BookPage() {
 
 	async function onBuyClick() {
 		await dispatch(addBookToCart(user.id, book.id))
+
+		show({
+			title: 'Книга добавлена в корзину',
+			icon: 'fa-solid fa-cart-plus',
+		})
+
 	}
 
 	async function onRemoveFromCartClick() {
 		await dispatch(removeBookFromCart(user.id, book.id))
+		show({
+			title: 'Книга удалена из корзины',
+			icon: 'fa-solid fa-trash',
+		})
 	}
 
 	return (
@@ -166,7 +177,7 @@ function BookPage() {
 							<h3>Оставить отзыв</h3>
 						</div>
 						<div className="block-body">
-							<ReviewForm />
+							<ReviewForm/>
 						</div>
 					</div>
 				</div>
@@ -182,7 +193,7 @@ function BookPage() {
 									items={ reviews.slice(0, book.reviewCount) }
 									getKey={ review => review.id }
 									render={ review => <Review review={ review }/> }
-									className={'list-gap-2'}
+									className={ 'list-gap-2' }
 								/>
 							) }
 						</div>

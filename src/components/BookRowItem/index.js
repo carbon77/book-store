@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addBookToCart, removeBookFromCart, selectUser } from '../../store/user'
+import { show } from '../../utils/notify'
 import Button from '../Button'
-import Loader from '../Loader'
 
 function BookRowItem({ book, size }) {
 	const navigate = useNavigate()
@@ -32,8 +32,16 @@ function BookRowItem({ book, size }) {
 		setIsLoading(true)
 		if (isAddedToCart) {
 			await dispatch(removeBookFromCart(user.id, book.id))
+			show({
+				title: 'Книга удалена из корзины',
+				icon: 'fa-solid fa-trash',
+			})
 		} else {
 			await dispatch(addBookToCart(user.id, book.id))
+			show({
+				title: 'Книга добавлена в корзину',
+				icon: 'fa-solid fa-cart-plus',
+			})
 		}
 		setIsLoading(false)
 	}
