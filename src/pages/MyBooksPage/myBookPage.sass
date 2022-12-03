@@ -2,6 +2,20 @@
   max-width: 1000px
   width: 80%
 
+.search-field
+  width: 50%
+  display: flex
+  align-items: baseline
+  gap: 20px
+
+  .search-input
+    width: 100%
+
 @media screen and (max-width: 480px)
   .mybooks-page
     width: 100%
+
+    .search-field
+      flex-direction: column
+      gap: 10px
+      width: 100%
