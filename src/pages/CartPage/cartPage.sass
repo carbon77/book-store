@@ -1,8 +1,8 @@
 @use "src/styles/colors"
 
 .cart-page
-  max-width: 1000px
-  width: 70%
+  max-width: 1200px
+  width: 80%
 
   &__item
     width: 180px
@@ -98,6 +98,41 @@
 
   &:hover
     color: colors.$primary
+
+
+.cart-genres
+  display: flex
+  gap: 10px
+  flex-direction: column
+
+  &__item
+    display: flex
+    gap: .5em
+    align-items: center
+    cursor: pointer
+    user-select: none
+
+    &:first-child
+      margin-bottom: 10px
+
+  &__input
+    display: none
+
+  &__input:checked + &__checkbox
+    background: colors.$primary
+    border-color: colors.$primary
+
+  &__checkbox
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 20px
+    height: 20px
+    border: 1px solid colors.$secondary
+    border-radius: 5px
+    color: white
+    transition: all .2s ease
+    outline: none
 
 
 @media screen and (max-width: 480px)

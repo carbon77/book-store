@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../components/Button'
 import CartPageItem from '../../components/Cart/CartPageItem'
+import CartFilters from '../../components/CartFilters'
 import Input from '../../components/Input'
 import List from '../../components/List'
 import { selectBooks } from '../../store/book'
@@ -13,25 +14,31 @@ import './cartPage.sass'
 
 function CartPage() {
 	const user = useSelector(selectUser)
-	const books = useSelector(selectBooks)
+	const allBooks = useSelector(selectBooks)
 	const dispatch = useDispatch()
-	const [userBooks, setUserBooks] = useState([])
+	const [books, setBooks] = useState([])
+	const [shownBooks, setShownBooks] = useState([])
 	const [totalPrice, setTotalPrice] = useState(0)
 	const [isFiltersShown, setIsFiltersShown] = useState(false)
 
 	useEffect(() => {
-		if (user && user.cart && books) {
+		if (user && user.cart && allBooks) {
 			setTotalPrice(user.cart.reduce((previous, current) => {
-				const book = books.find(book => book.id === current)
+				const book = allBooks.find(book => book.id === current)
 				return previous + book.price
 			}, 0))
 
-			setUserBooks(books.filter(book => user.cart.includes(book.id)))
+			setBooks(allBooks.filter(book => user.cart.includes(book.id)))
 		} else {
-			setUserBooks([])
+			setBooks([])
+			setShownBooks([])
 			setTotalPrice(0)
 		}
 	}, [user])
+
+	useEffect(() => {
+		setShownBooks(books)
+	}, [books])
 
 	function onBuyClick() {
 		show({
@@ -42,7 +49,7 @@ function CartPage() {
 	}
 
 	async function clearCart() {
-		await Promise.all(userBooks.map(book => dispatch(removeBookFromCart(user.id, book.id))))
+		await Promise.all(books.map(book => dispatch(removeBookFromCart(user.id, book.id))))
 	}
 
 	return (
@@ -54,7 +61,7 @@ function CartPage() {
 							<h2>Корзина</h2>
 						</div>
 						<div className="block-body">
-							<p><strong>Книг в корзине:</strong> { userBooks.length }</p>
+							<p><strong>Книг в корзине:</strong> { books.length }</p>
 							<p><strong>Итоговая сумма: </strong> { totalPrice } &#8381;</p>
 							<Button color={ 'primary' } icon={ faShoppingCart } className={ 'cart-page__buy-btn' }
 									onClick={ onBuyClick }>Купить</Button>
@@ -70,29 +77,10 @@ function CartPage() {
 										/>
 									</p>
 								</div>
-								<div className={ `cart-block__filters ${ isFiltersShown ? '' : 'mobile-close' }` }>
-									<div className="cart-filters__item">
-										<small><strong>Поиск</strong></small>
-										<Input placeholder={ 'Название, автор...' }/>
-									</div>
-									<div className="cart-filters__item">
-										<small><strong>Цена, &#8381;</strong></small>
-										<Input placeholder={ 'от' }/>
-										<Input placeholder={ 'до' }/>
-									</div>
-									<div className="cart-filters__item sort">
-										<small><strong>Сортировать по цене</strong></small>
-										<div className="btns">
-											<Button title={ 'По убыванию' } outline
-													icon={ 'fa-arrow-down-wide-short' }/>
-											<Button title={ 'По возврастанию' } outline
-													icon={ 'fa-arrow-down-short-wide' }/>
-										</div>
-									</div>
-								</div>
+								<CartFilters isFiltersShown={isFiltersShown} setShownBooks={setShownBooks} books={books} />
 								<div className="cart-block__books">
 									<List
-										items={ userBooks }
+										items={ shownBooks }
 										getKey={ book => book.id }
 										render={ (book) => <CartPageItem user={ user } book={ book }
 																		 removable={ true }/> }
