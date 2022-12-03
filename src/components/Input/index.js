@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import './input.sass'
 
-function Input({ type = 'text', placeholder, icon, status, name, onBlur, onChange, id, value }) {
+function Input({ type = 'text', placeholder, icon, status, name, onBlur, onChange, id, value, className }) {
 	return (
-		<div className={ `input ${ status ? 'input-' + status : '' }` }>
+		<div className={ `input ${ status ? 'input-' + status : '' } ${className}`}>
 			{ icon ? <FontAwesomeIcon icon={ icon } className={ 'input__icon' }/> : null }
 			<input type={ type } placeholder={ placeholder } name={ name } onBlur={ onBlur } onChange={ onChange }
 				   id={ id } value={value}/>

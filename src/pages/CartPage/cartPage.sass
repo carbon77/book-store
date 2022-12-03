@@ -4,10 +4,6 @@
   max-width: 1000px
   width: 70%
 
-  &__list
-    flex-direction: row
-    flex-wrap: wrap
-
   &__item
     width: 180px
     height: 100%
@@ -18,8 +14,10 @@
     border-radius: 10px
     cursor: pointer
     transition: all .2s ease
+    background: white
 
     &:hover
+      transform: scale(1.1)
       box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2)
 
   &__cover
@@ -62,10 +60,74 @@
     margin-right: 15px
 
 
+.cart-block
+  display: flex
+
+  &__filters
+    display: flex
+    flex-direction: column
+    gap: 20px
+    padding-right: 10px
+    width: 20%
+    border-right: 1px solid colors.$secondary
+
+    .cart-filters__item
+      display: flex
+      flex-direction: column
+      gap: 10px
+
+      &.sort
+        .btns
+          display: flex
+          gap: 10px
+
+    &-toggle
+      display: none
+
+  &__books
+    flex: 1
+    padding-left: 10px
+
+
+.filters-toggle
+  display: flex
+  gap: 5px
+  align-items: center
+  cursor: pointer
+  transition: all .2s ease
+
+  &:hover
+    color: colors.$primary
+
+
 @media screen and (max-width: 480px)
   .cart-page
     width: 100%
 
+    &__list
+      justify-content: center
+      gap: 1em
+
     &__item
       box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2)
       width: 200px
+
+  .cart-block
+    flex-direction: column
+    gap: 10px
+
+    &__filters
+      width: 100%
+      border: none
+      border-top: 1px solid colors.$secondary
+      border-bottom: 1px solid colors.$secondary
+      padding: 10px 0
+
+      &.mobile-close
+        display: none
+
+      .cart-filters__item
+        width: 70%
+
+      &-toggle
+        display: block

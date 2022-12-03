@@ -28,6 +28,9 @@ function CartPageItem({ user, book, removable }) {
 			<img src={ book.cover } alt="cover.webp" className={ 'cart-page__cover' }/>
 			<div className="cart-page__info">
 				<strong className="cart-page__name">{ book.name }</strong>
+				{!removable ? null : (
+					<small className="cart-page__price"><strong>Цена:</strong> {book.price} &#8381;</small>
+				)}
 				<small className="cart-page__author">{ book.author }</small>
 			</div>
 		</div>
