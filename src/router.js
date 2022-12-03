@@ -11,6 +11,7 @@ import PaymentInfo from './pages/UserPage/PaymentInfo'
 import UserHistory from './pages/UserPage/UserHistory'
 import UserInfo from './pages/UserPage/UserInfo'
 
+// Объект роутера - главный объект для навигации
 export default createBrowserRouter([
 	{
 		path: '/',

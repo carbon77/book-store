@@ -6,6 +6,7 @@ import { show } from '../../utils/notify'
 import Button from '../Button'
 import Input from '../Input'
 
+// Компонент формы регистрации
 function SignUpForm({ onSubmit: closeModal }) {
 	const { control, handleSubmit, formState: { errors } } = useForm()
 	const dispatch = useDispatch()

@@ -5,21 +5,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../components/Button'
 import CartPageItem from '../../components/Cart/CartPageItem'
 import CartFilters from '../../components/CartFilters'
-import Input from '../../components/Input'
 import List from '../../components/List'
 import { selectBooks } from '../../store/book'
 import { removeBookFromCart, selectUser } from '../../store/user'
 import { show } from '../../utils/notify'
 import './cartPage.sass'
 
+// Компонент для страницы корзины
 function CartPage() {
 	const user = useSelector(selectUser)
-	const allBooks = useSelector(selectBooks)
+	const allBooks = useSelector(selectBooks) // Все книги
 	const dispatch = useDispatch()
-	const [books, setBooks] = useState([])
-	const [shownBooks, setShownBooks] = useState([])
+	const [books, setBooks] = useState([]) // Книги в корзине пользователя
+	const [shownBooks, setShownBooks] = useState([]) // Книги, которые видит пользователь
 	const [totalPrice, setTotalPrice] = useState(0)
-	const [isFiltersShown, setIsFiltersShown] = useState(false)
+	const [isFiltersShown, setIsFiltersShown] = useState(false) // Видны ли фильтры (для мобильных устройств)
 
 	useEffect(() => {
 		if (user && user.cart && allBooks) {
@@ -73,11 +73,12 @@ function CartPage() {
 									   onClick={ () => setIsFiltersShown(s => !s) }>
 										Фильтры
 										<FontAwesomeIcon
-											icon={ `fa-solid ${isFiltersShown ? 'fa-chevron-up' : 'fa-chevron-down'}` }
+											icon={ `fa-solid ${ isFiltersShown ? 'fa-chevron-up' : 'fa-chevron-down' }` }
 										/>
 									</p>
 								</div>
-								<CartFilters isFiltersShown={isFiltersShown} setShownBooks={setShownBooks} books={books} />
+								<CartFilters isFiltersShown={ isFiltersShown } setShownBooks={ setShownBooks }
+											 books={ books }/>
 								<div className="cart-block__books">
 									<List
 										items={ shownBooks }

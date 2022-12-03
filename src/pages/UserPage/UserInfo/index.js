@@ -8,6 +8,7 @@ import Modal from '../../../components/Modal'
 import { selectUser } from '../../../store/user'
 import { show } from '../../../utils/notify'
 
+// Компоненты для блока с основной информацией пользователя
 function UserInfo() {
 	const user = useSelector(selectUser)
 	const dispatch = useDispatch()

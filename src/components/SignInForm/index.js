@@ -6,6 +6,7 @@ import { show } from '../../utils/notify'
 import Button from '../Button'
 import Input from '../Input'
 
+// Компонент формы авторизации
 function SignInForm({ onSubmit: closeModal }) {
 	const { handleSubmit, control, formState: { errors } } = useForm()
 	const [isLoading, setIsLoading] = useState(false)

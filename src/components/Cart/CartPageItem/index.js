@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { removeBookFromCart } from '../../../store/user'
 
+// Компонент элемента для страницы корзины
 function CartPageItem({ user, book, removable }) {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()

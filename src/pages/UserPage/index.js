@@ -16,6 +16,7 @@ import Modal from '../../components/Modal'
 import { selectUser, signOut, uploadAvatar } from '../../store/user'
 import './userPage.sass'
 
+// Компоненты для страницы пользователя
 function UserPage() {
 	const dispatch = useDispatch()
 	const user = useSelector(selectUser)
@@ -26,12 +27,14 @@ function UserPage() {
 	const [signOutModalOpen, setSignOutModalOpen] = useState(false)
 
 	useEffect(() => {
+		// Если пользователь переходит в /user, то его автоматически перебрасывает на /user/info
 		if (location.pathname.endsWith('/user')) {
 			return navigate('info')
 		}
 	}, [location])
 
 	useEffect(() => {
+		// Проверка авторизации пользователя, если не успешна, то перебрасывает на домашнюю страницу
 		if (user?.name) {
 			setUserInfoLoading(false)
 		} else {
@@ -43,6 +46,7 @@ function UserPage() {
 		}
 	}, [user])
 
+	// Массив элементов внутреннего меню страницы
 	const links = [
 		{
 			text: 'Основная информация',

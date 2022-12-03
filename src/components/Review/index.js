@@ -4,6 +4,7 @@ import React from 'react'
 import { getDateString } from '../../utils/date'
 import Button from '../Button'
 
+// Компонент отзыва на книгу
 function Review({ review }) {
 	return (
 		<div className={ 'review' }>

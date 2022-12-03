@@ -10,14 +10,16 @@ import List from '../List'
 import './cart.sass'
 import CartItem from './CartItem'
 
+// Компонент корзины
 function Cart({ isOpen, setIsOpen }) {
 	const user = useSelector(selectUser)
 	const allBooks = useSelector(selectBooks)
 	const navigate = useNavigate()
-	const [userBooks, setUserBooks] = useState([])
+	const [userBooks, setUserBooks] = useState([]) // Книги, которые показываются
 	const [totalPrice, setTotalPrice] = useState(0)
 
 	useEffect(() => {
+		// Инициализация книг и вычисление общей цены
 		if (user && user.cart && allBooks) {
 			setTotalPrice(user.cart.reduce((previous, current) => {
 				const book = allBooks.find(book => book.id === current)
@@ -32,6 +34,7 @@ function Cart({ isOpen, setIsOpen }) {
 	}, [user])
 
 	useEffect(() => {
+		// Открытие, закрытие корзины
 		if (isOpen) {
 			document.body.style.overflow = 'hidden'
 		} else {

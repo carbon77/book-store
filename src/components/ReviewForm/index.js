@@ -7,6 +7,7 @@ import { show } from '../../utils/notify'
 import Button from '../Button'
 import './review-form.sass'
 
+// Компонент формы для отзыва на книгу
 function ReviewForm() {
 	const user = useSelector(selectUser)
 	const [rating, setRating] = useState(0)

@@ -4,6 +4,14 @@ import React, { useEffect } from 'react'
 import './modal.sass'
 import Button from '../Button'
 
+// Компонент модального окна
+// title - заголовок окна
+// children - содержимое окна
+// isOpen - состояние открытия окна
+// setIsOpen - функция для изменения состояния окна
+// onSubmit, onCancel - функция при клике на submit и cancel кнопку
+// submitText, cancelText - текст submit и cancel кнопки
+// form - id формы, для которой вызывается событие submit
 function Modal({ title, children, isOpen, setIsOpen, onSubmit, onCancel, cancelText, submitText, form }) {
 	function onModalClick(e) {
 		if (e.target.classList.contains('modal')) {

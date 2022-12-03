@@ -6,6 +6,7 @@ import Input from '../../../components/Input'
 import { selectUser } from '../../../store/user'
 import { show } from '../../../utils/notify'
 
+// Компонент для блока с информацией "О себе"
 function AboutMe() {
 	const user = useSelector(selectUser)
 	const [firstName, setFirstName] = useState(user.name)

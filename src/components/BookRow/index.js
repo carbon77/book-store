@@ -2,6 +2,8 @@ import React from 'react'
 import BookRowItem from '../BookRowItem'
 import './bookRow.sass'
 
+// Компонент для строки книг в домашней странице
+// при size == 'large' первый элемент выделен
 function BookRow({ books, size }) {
 	return (
 		<div className={ `book-row ${ size ? size : '' }` }>

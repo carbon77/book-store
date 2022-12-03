@@ -20,6 +20,7 @@ export default function CartFilters({
 	const [checkedGenres, setCheckedGenres] = useState([allGenre])
 
 	useEffect(() => {
+		// Функция, которая фильтрует книги
 		let newBooks = books
 			.filter(book => book.name.toLowerCase().includes(searchQuery) || book.author.toLowerCase().includes(searchQuery))
 

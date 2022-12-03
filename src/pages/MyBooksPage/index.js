@@ -8,6 +8,7 @@ import { selectBooks } from '../../store/book'
 import { selectUser } from '../../store/user'
 import './myBookPage.sass'
 
+// Компонент для страницы "Мои книги"
 function MyBooksPage() {
 	const user = useSelector(selectUser)
 	const books = useSelector(selectBooks)
@@ -36,11 +37,11 @@ function MyBooksPage() {
 							<div className="search-field">
 								<label htmlFor={ 'mybook-search-input' }>Поиск:</label>
 								<Input
-									className={'search-input'}
+									className={ 'search-input' }
 									id={ 'mybook-search-input' }
 									placeholder={ 'Введите название, автора...' }
-									value={searchQuery}
-									onChange={e => setSearchQuery(e.target.value)}
+									value={ searchQuery }
+									onChange={ e => setSearchQuery(e.target.value) }
 								/>
 							</div>
 							<div className="divider"/>

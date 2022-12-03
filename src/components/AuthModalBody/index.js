@@ -4,6 +4,8 @@ import './authModalBody.sass'
 import SignInForm from '../SignInForm'
 import SignUpForm from '../SignUpForm'
 
+// Компоненты для содержимого модального окна авторизации,
+// здесь реализуются вкладки
 function AuthModalBody({ setIsModalOpen }) {
 	const [tab, setTab] = useState('signIn')
 

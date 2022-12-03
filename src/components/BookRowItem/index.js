@@ -6,6 +6,7 @@ import { addBookToCart, removeBookFromCart, selectUser } from '../../store/user'
 import { show } from '../../utils/notify'
 import Button from '../Button'
 
+// Компонент для элемента компонента BookRow
 function BookRowItem({ book, size }) {
 	const navigate = useNavigate()
 	const user = useSelector(selectUser)

@@ -1,11 +1,10 @@
 import {
-	faBars,
 	faBook,
 	faCartShopping,
 	faList,
-	faMagnifyingGlass, faSearch,
+	faMagnifyingGlass,
+	faSearch,
 	faSignIn,
-	faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
@@ -18,6 +17,7 @@ import Modal from '../Modal'
 import './header.sass'
 import './header_media.sass'
 
+// Компонент шапки сайта
 function Header({ setIsCartOpen }) {
 	const user = useSelector(selectUser)
 	const navigate = useNavigate()

@@ -11,6 +11,7 @@ import { auth } from '../firebase'
 import { fetchBooks } from '../store/book'
 import { loadUserInfo, setUser } from '../store/user'
 
+// Корневой компонент навигации, все компоненты для страниц будут внутри него
 function Root() {
 	const dispatch = useDispatch()
 	const [isLoading, setIsLoading] = useState(true)
@@ -18,6 +19,7 @@ function Root() {
 
 	useEffect(() => {
 		setIsLoading(true)
+		// Слушатель для проверки авторизации пользователя
 		onAuthStateChanged(auth, user => {
 			Promise.all([
 				user ? dispatch(setUser({id : user.uid, email: user.email})) : null,

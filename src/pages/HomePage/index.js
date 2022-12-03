@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import BookRow from '../../components/BookRow'
 import Loader from '../../components/Loader'
-import { fetchBooks, selectBooks } from '../../store/book'
+import { selectBooks } from '../../store/book'
 import './homePage.sass'
 
+// Компонент для домашней страницы
 function HomePage() {
 	const books = useSelector(selectBooks)
 	const dispatch = useDispatch()

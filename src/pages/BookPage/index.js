@@ -15,6 +15,7 @@ import { getDateString } from '../../utils/date'
 import { show } from '../../utils/notify'
 import './bookPage.sass'
 
+// Компонент для страницы конкретной книги
 function BookPage() {
 	const { bookId } = useParams()
 	const book = useSelector(selectCurrentBook)
@@ -26,6 +27,7 @@ function BookPage() {
 	const [isAddedToCart, setIsAddedToCart] = useState(false)
 
 	useEffect(() => {
+		// Загрузка книги
 		if (!book || bookId !== book.id) {
 			dispatch(fetchBookById(bookId)).then(() => {
 				setIsBookLoading(false)
@@ -36,6 +38,7 @@ function BookPage() {
 	}, [book, bookId])
 
 	useEffect(() => {
+		// Загрузка отзывов
 		if (!reviews?.length) {
 			dispatch(fetchReviews()).then(() => {
 				setIsReviewsLoading(false)
@@ -46,6 +49,7 @@ function BookPage() {
 	}, [reviews])
 
 	useEffect(() => {
+		// Проверка авторизации пользователя
 		if (user && user.cart && user.cart.includes(bookId)) {
 			setIsAddedToCart(true)
 		} else {

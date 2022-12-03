@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeBookFromCart } from '../../../store/user'
 
+// Компонент элемента корзины
 function CartItem({ user, book, setIsCartOpen }) {
 	const dispatch = useDispatch()
 
