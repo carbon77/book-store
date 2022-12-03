@@ -30,6 +30,7 @@ function SignUpForm({ onSubmit: closeModal }) {
 
 	return (
 		<form onSubmit={ handleSubmit(onSubmit) } className={ 'form' }>
+			<p>Регистрация на данный момент недоступна</p>
 			<div className="form-field">
 				<label htmlFor="name-input">Имя</label>
 				<Controller

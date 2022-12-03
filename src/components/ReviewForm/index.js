@@ -20,7 +20,10 @@ function ReviewForm() {
 
 	function onSubmit(e) {
 		e.preventDefault()
-		show(null, `Спасибо за отзыв! Оценка: ${ rating }`)
+		show({
+			title: 'Спасибо за отзыв!',
+			description: `Оценка: ${ rating }`,
+		})
 	}
 
 	return (
@@ -31,13 +34,14 @@ function ReviewForm() {
 				<div className="review-form__rating">
 					<span>Оцените книгу:</span>
 					<div className="stars">
-						{[...Array(5).keys()].reverse().map(i => (
+						{ [...Array(5).keys()].reverse().map(i => (
 							<FontAwesomeIcon
+								key={i}
 								icon={ faStar }
 								className={ `star ${ rating >= i + 1 ? 'checked' : '' }` }
 								onClick={ () => setRating(i + 1) }
 							/>
-						))}
+						)) }
 					</div>
 				</div>
 				<textarea

@@ -33,7 +33,7 @@ function BookPage() {
 		} else {
 			setIsBookLoading(false)
 		}
-	}, [book])
+	}, [book, bookId])
 
 	useEffect(() => {
 		if (!reviews?.length) {

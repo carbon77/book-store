@@ -56,7 +56,7 @@ function Cart({ isOpen, setIsOpen }) {
 					<List
 						getKey={ book => book.id }
 						items={ userBooks }
-						render={ book => <CartItem user={ user } book={ book }/> }
+						render={ book => <CartItem user={ user } book={ book } setIsCartOpen={setIsOpen}/> }
 					/>
 				</div>
 				<p className="cart__price">
