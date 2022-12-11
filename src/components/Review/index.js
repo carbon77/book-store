@@ -8,11 +8,11 @@ import Button from '../Button'
 function Review({ review }) {
 	return (
 		<div className={ 'review' }>
-			<img src={ review.avatar } alt="avatar" className="review__avatar"/>
-			<div>
+			<img src={ review.userAvatar } alt="avatar" className="review__avatar"/>
+			<div className={'review__content'}>
 				<div className="review__header">
 					<div>
-						<strong className="review__author">{ review.author }</strong>
+						<strong className="review__author">{ review.user }</strong>
 						<small
 							className="review__creation-date">{ getDateString(review.creationDate) }</small>
 					</div>

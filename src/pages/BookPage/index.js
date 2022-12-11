@@ -39,13 +39,9 @@ function BookPage() {
 
 	useEffect(() => {
 		// Загрузка отзывов
-		if (!reviews?.length) {
-			dispatch(fetchReviews()).then(() => {
-				setIsReviewsLoading(false)
-			})
-		} else {
+		dispatch(fetchReviews(bookId)).then(() => {
 			setIsReviewsLoading(false)
-		}
+		})
 	}, [reviews])
 
 	useEffect(() => {
@@ -181,7 +177,7 @@ function BookPage() {
 							<h3>Оставить отзыв</h3>
 						</div>
 						<div className="block-body">
-							<ReviewForm/>
+							<ReviewForm bookId={bookId}/>
 						</div>
 					</div>
 				</div>
@@ -192,9 +188,9 @@ function BookPage() {
 							<h3>Отзывы</h3>
 						</div>
 						<div className="block-body">
-							{ !book.reviewCount ? <p>На эту книгу ещё не оставили отзыв</p> : (
+							{ reviews.length === 0 ? <p>На эту книгу ещё не оставили отзыв</p> : (
 								<List
-									items={ reviews.slice(0, book.reviewCount) }
+									items={ reviews }
 									getKey={ review => review.id }
 									render={ review => <Review review={ review }/> }
 									className={ 'list-gap-2' }

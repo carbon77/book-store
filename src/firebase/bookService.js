@@ -1,5 +1,16 @@
-import { arrayRemove, arrayUnion, collection, doc, getDoc, getDocs, updateDoc } from '@firebase/firestore'
+import {
+	addDoc,
+	arrayRemove,
+	arrayUnion,
+	collection,
+	doc,
+	getDoc,
+	getDocs,
+	Timestamp,
+	updateDoc,
+} from '@firebase/firestore'
 import { db } from './index'
+import userService from './userService'
 
 // Сервис для работы с книгами
 export default {
@@ -27,12 +38,16 @@ export default {
 	},
 
 	// Загрузка отзывов
-	async loadReviews() {
-		let snapshot = await getDocs(collection(db, 'reviews'))
+	async loadReviews(bookId) {
+		let snapshot = await getDocs(collection(db, 'books', bookId, 'reviews'))
 		let reviews = []
 
 		snapshot.forEach(doc => {
-			reviews.push({ id: doc.id, ...doc.data(), creationDate: doc.data().creationDate.seconds })
+			reviews.push({
+				id: doc.id,
+				...doc.data(),
+				creationDate: doc.data().creationDate.seconds,
+			})
 		})
 
 		return reviews
@@ -40,17 +55,31 @@ export default {
 
 	// Добавление книги в корзину пользователя
 	async addBookToCart(userId, bookId) {
-		const userRef = doc(db, 'userInfo', userId)
-		await updateDoc(userRef, {
-			cart: arrayUnion(bookId),
+		await userService.updateUser(userId, {
+			cart: arrayUnion(bookId)
 		})
 	},
 
 	// Удаление книги из корзины пользователя
 	async removeBookFromCart(userId, bookId) {
-		const userRef = doc(db, 'userInfo', userId)
-		await updateDoc(userRef, {
+		await userService.updateUser(userId, {
 			cart: arrayRemove(bookId),
 		})
+	},
+
+	// Добавление отзыва книге
+	async addReviewToBook(user, bookId, { text, rating }) {
+		const review = {
+			user: user.name,
+			userId: user.id,
+			userAvatar: user.avatarUrl,
+			text,
+			rating,
+			likes: 0,
+			dislikes: 0,
+			creationDate: Timestamp.fromMillis(Date.now()),
+		}
+		const reviewRef = await addDoc(collection(db, 'books', bookId, 'reviews'), review)
+		return { ...review, id: reviewRef.uid }
 	},
 }

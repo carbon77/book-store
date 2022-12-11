@@ -19,6 +19,10 @@ export const bookSlice = createSlice({
 
 		setReviews: (state, action) => {
 			state.reviews = action.payload
+		},
+
+		addReview: (state, action) => {
+			state.reviews = [...state.reviews, action.payload]
 		}
 	},
 })
@@ -26,7 +30,7 @@ export const bookSlice = createSlice({
 export default bookSlice.reducer
 
 // Actions
-export const { setBooks, setCurrentBook, setReviews } = bookSlice.actions
+export const { setBooks, setCurrentBook, setReviews, addReview } = bookSlice.actions
 
 // Selectors
 export const selectBooks = state => state.book.books
@@ -48,9 +52,16 @@ export function fetchBookById(bookId) {
 	}
 }
 
-export function fetchReviews() {
+export function fetchReviews(bookId) {
 	return async (dispatch, getState) => {
-		const reviews = await bookService.loadReviews()
+		const reviews = await bookService.loadReviews(bookId)
 		dispatch(setReviews(reviews))
+	}
+}
+
+export function addReviewToBook(user, bookId, { text, rating }) {
+	return async (dispatch, getState) => {
+		const review = await bookService.addReviewToBook(user, bookId, { text, rating })
+		dispatch(addReview(review))
 	}
 }

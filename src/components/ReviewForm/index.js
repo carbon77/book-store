@@ -1,14 +1,16 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addReviewToBook } from '../../store/book'
 import { selectUser } from '../../store/user'
 import { show } from '../../utils/notify'
 import Button from '../Button'
 import './review-form.sass'
 
 // Компонент формы для отзыва на книгу
-function ReviewForm() {
+function ReviewForm({ bookId }) {
+	const dispatch = useDispatch()
 	const user = useSelector(selectUser)
 	const [rating, setRating] = useState(0)
 	const [text, setText] = useState('')
@@ -19,8 +21,10 @@ function ReviewForm() {
 		)
 	}
 
-	function onSubmit(e) {
+	async function onSubmit(e) {
 		e.preventDefault()
+		await dispatch(addReviewToBook(user, bookId, { text, rating }))
+
 		show({
 			title: 'Спасибо за отзыв!',
 			description: `Оценка: ${ rating }`,
