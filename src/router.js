@@ -4,6 +4,7 @@ import BookPage from './pages/BookPage'
 import CartPage from './pages/CartPage'
 import HomePage from './pages/HomePage'
 import MyBooksPage from './pages/MyBooksPage'
+import ErrorPage from './pages/ErrorPage'
 import Root from './pages/Root'
 import UserPage from './pages/UserPage'
 import AboutMe from './pages/UserPage/AboutMe'
@@ -16,6 +17,7 @@ export default createBrowserRouter([
 	{
 		path: '/',
 		element: <Root/>,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				index: true,
