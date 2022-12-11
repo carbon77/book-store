@@ -9,8 +9,8 @@ import { show } from '../../../utils/notify'
 // Компонент для блока с информацией "О себе"
 function AboutMe() {
 	const user = useSelector(selectUser)
-	const [firstName, setFirstName] = useState(user.name)
-	const [secondName, setSecondName] = useState('')
+	const [firstName, setFirstName] = useState(user.firstName)
+	const [secondName, setSecondName] = useState(user.lastName)
 
 	return (
 		<>

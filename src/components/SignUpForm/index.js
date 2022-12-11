@@ -17,16 +17,16 @@ function SignUpForm({ onSubmit: closeModal }) {
 			title: 'Регистрация недоступна',
 			icon: 'fa-solid fa-ban',
 		})
-		// setIsLoading(true)
-		// dispatch(createUser(name, email, password)).then(() => {
-		// 	setIsLoading(false)
-		// 	show({
-		// 		title: 'Регистрация успешна',
-		// 		description: 'Вы вошли в систему',
-		// 		icon: 'fa-solid fa-right-to-bracket',
-		// 	})
-		// 	closeModal()
-		// })
+		setIsLoading(true)
+		dispatch(createUser(name, email, password)).then(() => {
+			setIsLoading(false)
+			show({
+				title: 'Регистрация успешна',
+				description: 'Вы вошли в систему',
+				icon: 'fa-solid fa-right-to-bracket',
+			})
+			closeModal()
+		})
 	}
 
 	return (

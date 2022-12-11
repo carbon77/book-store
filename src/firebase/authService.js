@@ -3,26 +3,29 @@ import {
 	signInWithEmailAndPassword,
 	signOut as firebaseSignOut,
 } from '@firebase/auth'
-import { auth } from './index'
+import { doc, setDoc } from '@firebase/firestore'
+import { User, userConverter } from '../models/User'
+import { auth, db } from './index'
 
 // Сервис для работы с авторизацией
 export default {
 	// Создание пользователя
-	async createUser(email, password) {
-		return await createUserWithEmailAndPassword(auth, email, password)
-			.then(({ user }) => ( {
-				id: user.uid,
-				email: user.email,
-			} ))
+	async createUser(name, email, password) {
+		const id =  await createUserWithEmailAndPassword(auth, email, password)
+			.then(({ user }) => user.uid)
+		const user = new User(id, name, email)
+		user.createdAt = Date.now()
+
+		const ref = doc(db, 'users', id).withConverter(userConverter)
+		await setDoc(ref, user)
+
+		return user
 	},
 
 	// Авторизация пользователя
 	async signIn(email, password) {
 		return await signInWithEmailAndPassword(auth, email, password)
-			.then(({ user }) => ( {
-				id: user.uid,
-				email: user.email,
-			} ))
+			.then(({ user }) => user.uid)
 	},
 
 	// Выход пользователя из системы

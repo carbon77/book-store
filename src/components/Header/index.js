@@ -40,7 +40,7 @@ function Header({ setIsCartOpen }) {
 							<FontAwesomeIcon icon={ faSearch }/>
 						</div>
 						{ user ? (
-							!user.name ? <Loader size={ 'small' }/> : <>
+							!user.firstName ? <Loader size={ 'small' }/> : <>
 								<div className="header__nav-item user-item" id={ 'nav-item-user' }
 									 onClick={ () => navigate('user') }>
 									{ !user.avatarUrl ? null : (
@@ -48,7 +48,7 @@ function Header({ setIsCartOpen }) {
 									) }
 
 									<div className="user-item__info">
-										<strong>{ user.name }</strong>
+										<strong>{ user.firstName }</strong>
 										<small>Группа: ИКБО-01-21</small>
 									</div>
 								</div>

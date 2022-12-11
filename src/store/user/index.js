@@ -13,25 +13,21 @@ export const userSlice = createSlice({
 			if (!action.payload) {
 				state.user = null
 			} else {
-				state.user = { ...action.payload }
+				state.user = action.payload
 			}
 		},
 
-		setUserInfo: (state, action) => {
-			state.user = { ...state.user, ...action.payload }
-		},
-
 		addBook: (state, action) => {
-			state.user = {...state.user, cart: [...state.user.cart, action.payload]}
+			state.user = { ...state.user, cart: [...state.user.cart, action.payload] }
 		},
 
 		removeBook: (state, action) => {
 			state.user = {
 				...state.user,
-				cart: state.user.cart.filter(book => book !== action.payload)
+				cart: state.user.cart.filter(book => book !== action.payload),
 			}
-		}
-	}
+		},
+	},
 })
 
 export default userSlice.reducer
@@ -46,25 +42,23 @@ export const selectCart = (state) => state.user.user.cart
 // Thunk actions
 export function login(email, password) {
 	return async (dispatch, getState) => {
-		const user = await authService.signIn(email, password)
-		const userInfo = await userService.loadUserInfo(user.id)
-		const avatarUrl = await userService.downloadAvatar(user.id)
-		dispatch(setUser({ ...user, ...userInfo, avatarUrl }))
+		const id = await authService.signIn(email, password)
+		const user = await userService.fetchUser(id)
+		dispatch(setUser({ ...user }))
 	}
 }
 
-export function loadUserInfo(userId) {
+export function loadUser(userId) {
 	return async (dispatch, getState) => {
-		const userInfo = await userService.loadUserInfo(userId)
-		const avatarUrl = await userService.downloadAvatar(userId)
-		dispatch(setUserInfo({ ...userInfo, avatarUrl }))
+		const user = await userService.fetchUser(userId)
+		dispatch(setUser({ ...user }))
 	}
 }
 
 export function updateUserInfo(info) {
 	return async (dispatch, getState) => {
 		const userId = getState().id
-		await userService.setUserInfo(userId, info)
+		await userService.updateUser(userId, info)
 		dispatch(setUserInfo(info))
 	}
 }
@@ -85,10 +79,8 @@ export function signOut() {
 
 export function createUser(name, email, password) {
 	return async (dispatch) => {
-		const user = await authService.createUser(email, password)
-		await userService.setUserInfo(user.id, { name, cart: [] })
-
-		dispatch(setUser({ ...user, name }))
+		const user = await authService.createUser(name, email, password)
+		dispatch(setUser({ ...user }))
 	}
 }
 

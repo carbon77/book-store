@@ -23,7 +23,7 @@ function UserPage() {
 	const location = useLocation()
 	const navigate = useNavigate()
 	const [checkedItem, setCheckedItem] = useState(0)
-	const [userInfoLoading, setUserInfoLoading] = useState(true)
+	const [userInfoLoading, setUserInfoLoading] = useState(false)
 	const [signOutModalOpen, setSignOutModalOpen] = useState(false)
 
 	useEffect(() => {
@@ -35,14 +35,8 @@ function UserPage() {
 
 	useEffect(() => {
 		// Проверка авторизации пользователя, если не успешна, то перебрасывает на домашнюю страницу
-		if (user?.name) {
-			setUserInfoLoading(false)
-		} else {
-			setUserInfoLoading(true)
-		}
-
-		if (!user || !user?.name) {
-			return navigate('')
+		if (!user) {
+			navigate('/')
 		}
 	}, [user])
 
@@ -93,6 +87,9 @@ function UserPage() {
 		await dispatch(uploadAvatar(user.id, file))
 	}
 
+	if (!user)
+		return <Loader />
+
 	return ( <div className={ 'user-page-container' }>
 		<div className="block block-user-info">
 			<div className="block-body">
@@ -115,7 +112,7 @@ function UserPage() {
 						</div>
 						<div className="col">
 							<div className="row column gap-0">
-								<div className="col"><h1>{ user?.name }</h1></div>
+								<div className="col"><h1>{ user?.firstName }</h1></div>
 								<div className="col">Баланс: 1000 &#8381;</div>
 							</div>
 
@@ -149,9 +146,8 @@ function UserPage() {
 			setIsOpen={ setSignOutModalOpen }
 			submitText={ 'Выйти' }
 			onSubmit={ () => {
-				dispatch(signOut()).then(() => {
-					navigate('/')
-				})
+				dispatch(signOut())
+				navigate('/')
 			} }
 			cancelText={ 'Отмена' }
 			onCancel={ () => setSignOutModalOpen(false) }

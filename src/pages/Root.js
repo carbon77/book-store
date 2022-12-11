@@ -9,7 +9,7 @@ import Header from '../components/Header'
 import Loader from '../components/Loader'
 import { auth } from '../firebase'
 import { fetchBooks } from '../store/book'
-import { loadUserInfo, setUser } from '../store/user'
+import { loadUser, setUser } from '../store/user'
 
 // Корневой компонент навигации, все компоненты для страниц будут внутри него
 function Root() {
@@ -22,8 +22,7 @@ function Root() {
 		// Слушатель для проверки авторизации пользователя
 		onAuthStateChanged(auth, user => {
 			Promise.all([
-				user ? dispatch(setUser({id : user.uid, email: user.email})) : null,
-				user ? dispatch(loadUserInfo(user.uid)) : null,
+				user ? dispatch(loadUser(user.uid)) : null,
 				dispatch(fetchBooks())
 			]).then(() => {
 				setIsLoading(false)
