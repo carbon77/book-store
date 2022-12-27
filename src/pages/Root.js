@@ -7,7 +7,7 @@ import Cart from '../components/Cart'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Loader from '../components/Loader'
-import { auth } from '../firebase'
+import { auth } from '../services'
 import { fetchBooks } from '../store/book'
 import { loadUser, setUser } from '../store/user'
 

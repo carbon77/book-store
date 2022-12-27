@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import authService from '../../firebase/authService'
-import bookService from '../../firebase/bookService'
-import userService from '../../firebase/userService'
+import authService from '../../services/authService'
+import bookService from '../../services/bookService'
+import userService from '../../services/userService'
 
 export const userSlice = createSlice({
 	name: 'user',

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import bookService from '../../firebase/bookService'
+import bookService from '../../services/bookService'
 
 export const bookSlice = createSlice({
 	name: 'book',
